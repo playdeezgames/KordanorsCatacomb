@@ -1,6 +1,6 @@
 ﻿Friend Class ScreenSizeState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
-    Private _saveConfig As Action
+    Private ReadOnly _saveConfig As Action
     Private Shared ReadOnly _menuItems As IReadOnlyList(Of String) =
         New List(Of String) From
         {
