@@ -9,6 +9,7 @@ Public Class GameController
         GameContext.Initialize()
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.SFXVolume, New SFXVolumeState(Me, AddressOf SetCurrentState, Sub() _configSink(Size, Volume)))
         SetCurrentState(GameState.Splash)
     End Sub
 End Class

@@ -1,12 +1,16 @@
 ﻿Friend Class MainMenuState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Private Const EmbarkText = "Embark!"
+    Private Const ScreenSizeText = "Screen Size..."
+    Private Const SFXVolumeText = "SFX Volume..."
+    Private Const AboutText = "About..."
     Private Shared ReadOnly _menuItems As IReadOnlyList(Of String) =
         New List(Of String) From
         {
-            "Embark!",
-            "Screen Size",
-            "SFX Volume",
-            "About"
+            EmbarkText,
+            ScreenSizeText,
+            SFXVolumeText,
+            AboutText
         }
     Private _currentMenuItem As Integer = 0
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
@@ -19,6 +23,13 @@
                 _currentMenuItem = (_currentMenuItem + _menuItems.Count - 1) Mod _menuItems.Count
             Case Command.Down
                 _currentMenuItem = (_currentMenuItem + 1) Mod _menuItems.Count
+            Case Command.Green, Command.Blue
+                Select Case _menuItems(_currentMenuItem)
+                    Case SFXVolumeText
+                        SetState(GameState.SFXVolume)
+                    Case Else
+                        'do nothing... yet
+                End Select
         End Select
     End Sub
 
