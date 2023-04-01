@@ -2,4 +2,5 @@
     Splash
     MainMenu
     SFXVolume
+    ScreenSize
 End Enum

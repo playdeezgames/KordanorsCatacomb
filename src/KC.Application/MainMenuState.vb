@@ -25,6 +25,8 @@
                 _currentMenuItem = (_currentMenuItem + 1) Mod _menuItems.Count
             Case Command.Green, Command.Blue
                 Select Case _menuItems(_currentMenuItem)
+                    Case ScreenSizeText
+                        SetState(GameState.ScreenSize)
                     Case SFXVolumeText
                         SetState(GameState.SFXVolume)
                     Case Else
