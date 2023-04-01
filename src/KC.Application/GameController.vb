@@ -7,6 +7,7 @@ Public Class GameController
         _configSink = configSink
         _configSink(Size, Volume)
         GameContext.Initialize()
+        SetState(GameState.Prolog, New PrologState(Me, AddressOf SetCurrentState))
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState))
         SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))

@@ -4,4 +4,5 @@
     SFXVolume
     ScreenSize
     About
+    Prolog
 End Enum

@@ -31,8 +31,11 @@
                         SetState(GameState.SFXVolume)
                     Case AboutText
                         SetState(GameState.About)
+                    Case EmbarkText
+                        Embark()
+                        SetState(GameState.Prolog)
                     Case Else
-                        'do nothing... yet
+                        Throw New NotImplementedException
                 End Select
         End Select
     End Sub

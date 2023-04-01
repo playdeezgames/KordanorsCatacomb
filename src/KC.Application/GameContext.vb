@@ -1,6 +1,18 @@
-﻿Public Module GameContext
+﻿Imports KC.Data
+
+Public Module GameContext
     Public Const ViewWidth = 160
     Public Const ViewHeight = 90
+    Private _worldData As WorldData
+    Public ReadOnly Property World As IWorld
+        Get
+            Return New World(_worldData)
+        End Get
+    End Property
+    Friend Sub Embark()
+        _worldData = New WorldData
+        World.Generate()
+    End Sub
     Friend Sub Initialize()
         InitializeFonts()
     End Sub
