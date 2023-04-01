@@ -29,6 +29,8 @@
                         SetState(GameState.ScreenSize)
                     Case SFXVolumeText
                         SetState(GameState.SFXVolume)
+                    Case AboutText
+                        SetState(GameState.About)
                     Case Else
                         'do nothing... yet
                 End Select

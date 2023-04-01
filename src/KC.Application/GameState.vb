@@ -3,4 +3,5 @@
     MainMenu
     SFXVolume
     ScreenSize
+    About
 End Enum
