@@ -1,3 +1,10 @@
 ﻿Public Enum Sfx
-    Death
+    EnemyDeath
+    EnemyHit
+    LevelUp
+    Miss
+    PlayerDeath
+    PlayerHit
+    RollDice
+    UnlockDoor
 End Enum

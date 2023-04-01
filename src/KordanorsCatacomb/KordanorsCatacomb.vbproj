@@ -21,10 +21,18 @@
     <None Remove="Content\CyFont4x6.json" />
     <None Remove="Content\CyFont5x7.json" />
     <None Remove="Content\CyFont8x8.json" />
+    <None Remove="Content\EnemyDeath.wav" />
+    <None Remove="Content\EnemyHit.wav" />
     <None Remove="Content\Font3x5.json" />
     <None Remove="Content\Font4x6.json" />
     <None Remove="Content\Font5x7.json" />
     <None Remove="Content\Font8x8.json" />
+    <None Remove="Content\LevelUp.wav" />
+    <None Remove="Content\Miss.wav" />
+    <None Remove="Content\PlayerDeath.wav" />
+    <None Remove="Content\PlayerHit.wav" />
+    <None Remove="Content\RollDice.wav" />
+    <None Remove="Content\UnlockDoor.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +46,30 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\CyFont8x8.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemyDeath.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemyHit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\LevelUp.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Miss.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\PlayerDeath.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\PlayerHit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\RollDice.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UnlockDoor.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

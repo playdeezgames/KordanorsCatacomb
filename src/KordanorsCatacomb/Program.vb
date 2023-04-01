@@ -13,6 +13,14 @@ Module Program
             AddressOf CommandTransformerator,
             New Dictionary(Of Sfx, String) From
             {
+                {Sfx.EnemyDeath, "Content/EnemyDeath.wav"},
+                {Sfx.EnemyHit, "Content/EnemyHit.wav"},
+                {Sfx.LevelUp, "Content/LevelUp.wav"},
+                {Sfx.Miss, "Content/Miss.wav"},
+                {Sfx.PlayerDeath, "Content/PlayerDeath.wav"},
+                {Sfx.PlayerHit, "Content/PlayerHit.wav"},
+                {Sfx.RollDice, "Content/RollDice.wav"},
+                {Sfx.UnlockDoor, "Content/UnlockDoor.wav"}
             })
             host.Run()
         End Using
