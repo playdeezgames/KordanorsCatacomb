@@ -42,7 +42,12 @@ Module Program
         {
             {Keys.Right, Command.Right},
             {Keys.Left, Command.Left},
-            {Keys.Space, Command.Fire}
+            {Keys.Up, Command.Up},
+            {Keys.Down, Command.Down},
+            {Keys.Space, Command.Green},
+            {Keys.Escape, Command.Red},
+            {Keys.Enter, Command.Blue},
+            {Keys.Tab, Command.Yellow}
         }
     Private Function CommandTransformerator(key As Keys) As Command?
         If keyTable.ContainsKey(key) Then

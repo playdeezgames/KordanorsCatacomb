@@ -8,6 +8,7 @@ Public Class GameController
         _configSink(Size, Volume)
         GameContext.Initialize()
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState))
+        SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
         SetCurrentState(GameState.Splash)
     End Sub
 End Class
