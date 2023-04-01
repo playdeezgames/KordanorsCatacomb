@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>KordanorsCatacomb</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <OptionStrict>On</OptionStrict>
+    <ImportedNamespaces>AOS.Presentation=False,AOS.UI=False,KC.Application=False,Microsoft.Xna.Framework=False,Microsoft.Xna.Framework.Graphics=False,Microsoft.Xna.Framework.Input=False,System.IO=False,System.Text.Json=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,KordanorsCatacomb=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,5 +15,47 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Content\CyFont3x5.json" />
+    <None Remove="Content\CyFont4x6.json" />
+    <None Remove="Content\CyFont5x7.json" />
+    <None Remove="Content\CyFont8x8.json" />
+    <None Remove="Content\Font3x5.json" />
+    <None Remove="Content\Font4x6.json" />
+    <None Remove="Content\Font5x7.json" />
+    <None Remove="Content\Font8x8.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Content\CyFont3x5.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CyFont4x6.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CyFont5x7.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CyFont8x8.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AOS.Presentation\AOS.Presentation.vbproj" />
+    <ProjectReference Include="..\KC.Application\KC.Application.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="AOS.Presentation" />
+    <Import Include="AOS.UI" />
+    <Import Include="KC.Application" />
+    <Import Include="Microsoft.Xna.Framework" />
+    <Import Include="Microsoft.Xna.Framework.Graphics" />
+    <Import Include="Microsoft.Xna.Framework.Input" />
+    <Import Include="System.IO" />
+    <Import Include="System.Text.Json" />
+  </ItemGroup>
 
 </Project>
