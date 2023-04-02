@@ -6,6 +6,7 @@
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
+        SetState(GameState.Navigation)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

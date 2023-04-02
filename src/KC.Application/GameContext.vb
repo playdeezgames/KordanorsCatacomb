@@ -1,8 +1,10 @@
 ﻿Imports KC.Data
 
 Public Module GameContext
-    Public Const ViewWidth = 160
-    Public Const ViewHeight = 90
+    Public Const FrameWidth = 160
+    Public Const FrameHeight = 80
+    Public Const ViewWidth = FrameWidth
+    Public Const ViewHeight = FrameHeight + 10
     Private _worldData As WorldData
     Public ReadOnly Property World As IWorld
         Get

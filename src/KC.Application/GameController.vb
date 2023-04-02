@@ -10,6 +10,7 @@ Public Class GameController
         SetState(GameState.Prolog, New PrologState(Me, AddressOf SetCurrentState))
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState))
         SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.SFXVolume, New SFXVolumeState(Me, AddressOf SetCurrentState, Sub() _configSink(Size, Volume)))
         SetState(GameState.ScreenSize, New ScreenSizeState(Me, AddressOf SetCurrentState, Sub() _configSink(Size, Volume)))

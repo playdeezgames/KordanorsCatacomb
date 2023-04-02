@@ -5,4 +5,5 @@
     ScreenSize
     About
     Prolog
+    Navigation
 End Enum
