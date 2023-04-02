@@ -53,6 +53,10 @@
                 locations(column, row).SetBorder(Direction.East, nsBorders(column + 1, row))
                 locations(column, row).SetBorder(Direction.South, ewBorders(column, row + 1))
                 locations(column, row).SetBorder(Direction.West, nsBorders(column, row))
+            Next
+        Next
+        For column = 0 To MazeColumns - 1
+            For row = 0 To MazeRows - 1
                 If row > 0 Then
                     locations(column, row).SetNeighbor(Direction.North, locations(column, row - 1))
                 End If
@@ -65,13 +69,13 @@
                 If column > 0 Then
                     locations(column, row).SetNeighbor(Direction.West, locations(column - 1, row))
                 End If
-                Dim eastDoor = maze.GetCell(column, row).GetDoor(Direction.East)
-                If If(eastDoor?.Open, False) Then
-                    locations(column, row).GetBorder(Direction.East).BorderType = BorderType.Door
+                Dim westDoor = maze.GetCell(column, row).GetDoor(Direction.West)
+                If If(westDoor?.Open, False) Then
+                    locations(column, row).GetBorder(Direction.West).BorderType = BorderType.Door
                 End If
-                Dim southDoor = maze.GetCell(column, row).GetDoor(Direction.South)
-                If If(southDoor?.Open, False) Then
-                    locations(column, row).GetBorder(Direction.East).BorderType = BorderType.Door
+                Dim northDoor = maze.GetCell(column, row).GetDoor(Direction.North)
+                If If(northDoor?.Open, False) Then
+                    locations(column, row).GetBorder(Direction.North).BorderType = BorderType.Door
                 End If
             Next
         Next
