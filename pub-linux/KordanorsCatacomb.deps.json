@@ -11,6 +11,7 @@
         "dependencies": {
           "AOS.Presentation": "1.0.0",
           "KC.Application": "1.0.0",
+          "MonoGame.Framework.DesktopGL": "3.8.1.303",
           "runtimepack.Microsoft.NETCore.App.Runtime.linux-x64": "6.0.15"
         },
         "runtime": {

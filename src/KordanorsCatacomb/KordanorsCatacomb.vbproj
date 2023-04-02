@@ -94,4 +94,8 @@
     <Import Include="System.Text.Json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
+  </ItemGroup>
+
 </Project>
