@@ -5,6 +5,22 @@
         _data = data
     End Sub
 
+    Public Property PlayerCharacter As ICharacter Implements IWorld.PlayerCharacter
+        Get
+            If _data.PlayerCharacter.HasValue Then
+                Return New Character(_data, _data.PlayerCharacter.Value)
+            End If
+            Return Nothing
+        End Get
+        Set(value As ICharacter)
+            If value Is Nothing Then
+                _data.PlayerCharacter = Nothing
+                Return
+            End If
+            _data.PlayerCharacter = value.Id
+        End Set
+    End Property
+
     Public Sub Generate() Implements IWorld.Generate
         Clear()
         GenerateMaze()
@@ -59,7 +75,14 @@
                 End If
             Next
         Next
+        PlayerCharacter = CreateCharacter(locations(0, 0))
     End Sub
+
+    Private Function CreateCharacter(location As ILocation) As ICharacter
+        Dim characterId = _data.Characters.Count
+        _data.Characters.Add(New CharacterData With {.Location = location.Id})
+        Return New Character(_data, characterId)
+    End Function
 
     Private Function CreateBorder() As IBorder
         Dim borderId = _data.Borders.Count
