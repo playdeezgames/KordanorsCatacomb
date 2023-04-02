@@ -19,4 +19,13 @@
             Return _borderId
         End Get
     End Property
+
+    Public Property BorderType As BorderType Implements IBorder.BorderType
+        Get
+            Return BorderData.BorderType
+        End Get
+        Set(value As BorderType)
+            BorderData.BorderType = value
+        End Set
+    End Property
 End Class

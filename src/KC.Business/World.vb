@@ -37,6 +37,26 @@
                 locations(column, row).SetBorder(Direction.East, nsBorders(column + 1, row))
                 locations(column, row).SetBorder(Direction.South, ewBorders(column, row + 1))
                 locations(column, row).SetBorder(Direction.West, nsBorders(column, row))
+                If row > 0 Then
+                    locations(column, row).SetNeighbor(Direction.North, locations(column, row - 1))
+                End If
+                If column < MazeColumns - 1 Then
+                    locations(column, row).SetNeighbor(Direction.East, locations(column + 1, row))
+                End If
+                If row < MazeRows - 1 Then
+                    locations(column, row).SetNeighbor(Direction.South, locations(column, row + 1))
+                End If
+                If column > 0 Then
+                    locations(column, row).SetNeighbor(Direction.West, locations(column - 1, row))
+                End If
+                Dim eastDoor = maze.GetCell(column, row).GetDoor(Direction.East)
+                If If(eastDoor?.Open, False) Then
+                    locations(column, row).GetBorder(Direction.East).BorderType = BorderType.Door
+                End If
+                Dim southDoor = maze.GetCell(column, row).GetDoor(Direction.South)
+                If If(southDoor?.Open, False) Then
+                    locations(column, row).GetBorder(Direction.East).BorderType = BorderType.Door
+                End If
             Next
         Next
     End Sub
