@@ -3,4 +3,5 @@ Public Class WorldData
     Public Property Borders As New List(Of BorderData)
     Public Property Characters As New List(Of CharacterData)
     Public Property PlayerCharacter As Integer?
+    Public Property Facing As Direction
 End Class

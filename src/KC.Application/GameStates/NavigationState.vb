@@ -6,6 +6,12 @@
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
+        Select Case command
+            Case Command.Left
+                World.TurnLeft()
+            Case Command.Right
+                World.TurnRight()
+        End Select
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
@@ -13,9 +19,20 @@
         displayBuffer.Fill((0, FrameHeight), (ViewWidth, ViewHeight - FrameHeight), Hue.Green)
         Dim drawer As New Drawer(Of Hue)(displayBuffer, hue:=Hue.DarkGray)
         drawer.DrawFrame()
-        drawer.DrawAheadDoor()
-        drawer.DrawLeftDoor()
-        drawer.DrawRightDoor()
+        Dim character = World.PlayerCharacter
+        Dim location = character.Location
+        Dim aheadBorder = location.GetBorder(World.AheadDirection)
+        If aheadBorder.BorderType = Data.BorderType.Door Then
+            drawer.DrawAheadDoor()
+        End If
+        Dim leftBorder = location.GetBorder(World.LeftDirection)
+        If leftBorder.BorderType = Data.BorderType.Door Then
+            drawer.DrawLeftDoor()
+        End If
+        Dim rightBorder = location.GetBorder(World.RightDirection)
+        If rightBorder.BorderType = Data.BorderType.Door Then
+            drawer.DrawRightDoor()
+        End If
     End Sub
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)

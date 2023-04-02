@@ -3,6 +3,11 @@
 
     Private ReadOnly _data As WorldData
     Private ReadOnly _characterId As Integer
+    Private ReadOnly Property CharacterData As CharacterData
+        Get
+            Return _data.Characters(_characterId)
+        End Get
+    End Property
 
     Public Sub New(data As WorldData, characterId As Integer)
         Me._data = data
@@ -12,6 +17,15 @@
     Public ReadOnly Property Id As Integer Implements ICharacter.Id
         Get
             Return _characterId
+        End Get
+    End Property
+
+    Public ReadOnly Property Location As ILocation Implements ICharacter.Location
+        Get
+            If CharacterData.Location.HasValue Then
+                Return New Location(_data, CharacterData.Location.Value)
+            End If
+            Return Nothing
         End Get
     End Property
 End Class

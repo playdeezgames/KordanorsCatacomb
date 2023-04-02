@@ -1,6 +1,6 @@
 ﻿Public Class World
     Implements IWorld
-    Private _data As WorldData
+    Private ReadOnly _data As WorldData
     Sub New(data As WorldData)
         _data = data
     End Sub
@@ -21,9 +21,44 @@
         End Set
     End Property
 
+    Public Property Facing As Direction Implements IWorld.Facing
+        Get
+            Return _data.Facing
+        End Get
+        Set(value As Direction)
+            _data.Facing = value
+        End Set
+    End Property
+
+    Public ReadOnly Property AheadDirection As Direction Implements IWorld.AheadDirection
+        Get
+            Return Facing
+        End Get
+    End Property
+
+    Public ReadOnly Property RightDirection As Direction Implements IWorld.RightDirection
+        Get
+            Return Facing.ToDescriptor.RightDirection
+        End Get
+    End Property
+
+    Public ReadOnly Property LeftDirection As Direction Implements IWorld.LeftDirection
+        Get
+            Return Facing.ToDescriptor.LeftDirection
+        End Get
+    End Property
+
     Public Sub Generate() Implements IWorld.Generate
         Clear()
         GenerateMaze()
+    End Sub
+
+    Public Sub TurnLeft() Implements IWorld.TurnLeft
+        Facing = Facing.ToDescriptor.LeftDirection
+    End Sub
+
+    Public Sub TurnRight() Implements IWorld.TurnRight
+        Facing = Facing.ToDescriptor.RightDirection
     End Sub
 
     Private Sub Clear()
