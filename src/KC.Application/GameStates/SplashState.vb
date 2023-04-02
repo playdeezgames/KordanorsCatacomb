@@ -12,7 +12,11 @@
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Fonts(GameFont.Font8x8).WriteText(displayBuffer, (0, 0), "Kordanor's Catacomb", Hue.White)
+        Dim font = Fonts(GameFont.Font8x8)
+        Dim color = RNG.FromList(New List(Of Hue) From {Hue.LightBlue, Hue.LightGreen, Hue.LightCyan, Hue.LightRed, Hue.LightMagenta, Hue.Yellow, Hue.White})
+        font.WriteText(displayBuffer, (0, 41 - 16), "Larrikin of SPLORR!!", color)
+        font.WriteText(displayBuffer, (72, 41), "][", color)
+        font.WriteText(displayBuffer, (4, 41 + 16), "Kordanor's Catacomb", color)
     End Sub
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)

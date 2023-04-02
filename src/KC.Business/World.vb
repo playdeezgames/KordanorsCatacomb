@@ -122,12 +122,16 @@
                 End If
             Next
         Next
-        PlayerCharacter = CreateCharacter(locations(0, 0))
+        PlayerCharacter = CreateCharacter(CharacterType.Larrikin, locations(0, 0))
     End Sub
 
-    Private Function CreateCharacter(location As ILocation) As ICharacter
+    Private Function CreateCharacter(characterType As CharacterType, location As ILocation) As ICharacter
         Dim characterId = _data.Characters.Count
-        _data.Characters.Add(New CharacterData With {.Location = location.Id})
+        _data.Characters.Add(New CharacterData With
+                             {
+                                .Location = location.Id,
+                                .CharacterType = characterType
+                             })
         Return New Character(_data, characterId)
     End Function
 

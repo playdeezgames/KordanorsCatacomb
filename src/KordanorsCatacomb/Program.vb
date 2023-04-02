@@ -7,6 +7,7 @@ Module Program
             Function() config.SfxVolume,
             AddressOf SaveConfig)
         Using host As New Host(Of Hue, Command, Sfx)(
+            "Larrikin of SPLORR!! ][ - Kordanor's Catacomb",
             gameController,
             (ViewWidth, ViewHeight),
             AddressOf BufferCreatorator,

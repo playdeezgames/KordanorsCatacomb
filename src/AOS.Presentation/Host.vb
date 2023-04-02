@@ -3,7 +3,7 @@ Public Class Host(Of THue As Structure, TCommand As Structure, TSfx As Structure
     Private ReadOnly _controller As IGameController(Of THue, TCommand, TSfx)
 
     Private ReadOnly _viewSize As (Integer, Integer)
-
+    Private ReadOnly _title As String
     Private ReadOnly _graphics As GraphicsDeviceManager
     Private ReadOnly _bufferCreator As Func(Of Texture2D, IDisplayBuffer(Of THue))
     Private _texture As Texture2D
@@ -16,11 +16,13 @@ Public Class Host(Of THue As Structure, TCommand As Structure, TSfx As Structure
     Private ReadOnly _sfxSoundEffects As New Dictionary(Of TSfx, SoundEffect)
     Private ReadOnly _sfxFilenames As IReadOnlyDictionary(Of TSfx, String)
     Sub New(
+           title As String,
            controller As IGameController(Of THue, TCommand, TSfx),
            viewSize As (Integer, Integer),
            bufferCreator As Func(Of Texture2D, IDisplayBuffer(Of THue)),
            commandTransform As Func(Of Keys, TCommand?),
            sfxFileNames As IReadOnlyDictionary(Of TSfx, String))
+        _title = title
         _graphics = New GraphicsDeviceManager(Me)
         _controller = controller
         _viewSize = viewSize
@@ -37,6 +39,7 @@ Public Class Host(Of THue As Structure, TCommand As Structure, TSfx As Structure
             _sfxSoundEffects(entry.Key) = SoundEffect.FromFile(entry.Value)
         Next
         _controller.SetSfxHook(AddressOf OnSfx)
+        Window.Title = _title
         MyBase.Initialize()
     End Sub
 
