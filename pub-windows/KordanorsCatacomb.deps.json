@@ -903,11 +903,26 @@
       "KC.Application/1.0.0": {
         "dependencies": {
           "AOS.UI": "1.0.0",
+          "KC.Business": "1.0.0",
           "SPLORR.Game": "1.0.0",
           "System.Text.Json": "7.0.2"
         },
         "runtime": {
           "KC.Application.dll": {}
+        }
+      },
+      "KC.Business/1.0.0": {
+        "dependencies": {
+          "KC.Data": "1.0.0",
+          "SPLORR.Game": "1.0.0"
+        },
+        "runtime": {
+          "KC.Business.dll": {}
+        }
+      },
+      "KC.Data/1.0.0": {
+        "runtime": {
+          "KC.Data.dll": {}
         }
       },
       "SPLORR.Game/1.0.0": {
@@ -967,6 +982,16 @@
       "sha512": ""
     },
     "KC.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "KC.Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "KC.Data/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
