@@ -61,6 +61,14 @@
         Facing = Facing.ToDescriptor.RightDirection
     End Sub
 
+    Public Sub Move() Implements IWorld.Move
+        Dim location = PlayerCharacter.Location
+        Dim border = location.GetBorder(Facing)
+        If border.BorderType = BorderType.Door Then
+            PlayerCharacter.Location = location.GetNeighbor(Facing)
+        End If
+    End Sub
+
     Private Sub Clear()
         _data.Locations = New List(Of LocationData)
     End Sub

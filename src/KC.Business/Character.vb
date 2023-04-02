@@ -20,12 +20,19 @@
         End Get
     End Property
 
-    Public ReadOnly Property Location As ILocation Implements ICharacter.Location
+    Public Property Location As ILocation Implements ICharacter.Location
         Get
             If CharacterData.Location.HasValue Then
                 Return New Location(_data, CharacterData.Location.Value)
             End If
             Return Nothing
         End Get
+        Set(value As ILocation)
+            If value Is Nothing Then
+                CharacterData.Location = Nothing
+                Return
+            End If
+            CharacterData.Location = value.Id
+        End Set
     End Property
 End Class

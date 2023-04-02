@@ -35,4 +35,12 @@
         End If
         Return Nothing
     End Function
+
+    Public Function GetNeighbor(direction As Direction) As ILocation Implements ILocation.GetNeighbor
+        Dim locationId As Integer = 0
+        If LocationData.Neighbors.TryGetValue(direction, locationId) Then
+            Return New Location(_data, locationId)
+        End If
+        Return Nothing
+    End Function
 End Class

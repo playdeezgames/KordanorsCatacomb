@@ -11,6 +11,8 @@
                 World.TurnLeft()
             Case Command.Right
                 World.TurnRight()
+            Case Command.Up
+                World.Move()
         End Select
     End Sub
 
