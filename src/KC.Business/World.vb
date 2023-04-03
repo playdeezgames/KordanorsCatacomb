@@ -51,6 +51,8 @@
     Public Sub Generate() Implements IWorld.Generate
         Clear()
         GenerateMaze()
+        PlayerCharacter = CreateCharacter(CharacterType.Larrikin, New Location(_data, _data.DungeonLocations(0, 0)))
+        _data.Facing = RNG.FromList(New List(Of Direction) From {Direction.North, Direction.East, Direction.South, Direction.West})
     End Sub
 
     Public Sub TurnLeft() Implements IWorld.TurnLeft
@@ -88,10 +90,12 @@
                 ewBorders(column, row) = CreateBorder()
             Next
         Next
+        ReDim _data.DungeonLocations(MazeColumns - 1, MazeRows - 1)
         Dim locations(MazeColumns - 1, MazeRows - 1) As ILocation
         For column = 0 To MazeColumns - 1
             For row = 0 To MazeRows - 1
                 locations(column, row) = CreateLocation()
+                _data.DungeonLocations(column, row) = locations(column, row).Id
                 locations(column, row).SetBorder(Direction.North, ewBorders(column, row))
                 locations(column, row).SetBorder(Direction.East, nsBorders(column + 1, row))
                 locations(column, row).SetBorder(Direction.South, ewBorders(column, row + 1))
