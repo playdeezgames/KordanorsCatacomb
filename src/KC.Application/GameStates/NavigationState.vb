@@ -35,8 +35,8 @@
         If rightBorder.BorderType = Data.BorderType.Door Then
             drawer.DrawRightDoor()
         End If
-        Dim font = Fonts(GameFont.Font3x5)
-        font.WriteText(displayBuffer, (0, FrameHeight), "Arrows: Move/Turn", Hue.White)
+        Dim font = Fonts(GameFont.Font4x6)
+        font.WriteText(displayBuffer, (0, FrameHeight + 2), "Arrows: Move/Turn      Esc: Menu", Hue.White)
     End Sub
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)
