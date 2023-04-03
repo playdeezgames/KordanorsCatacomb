@@ -85,7 +85,7 @@ Public Class World
             Dim exitcount = location.ExitCount
             found = exitcount >= descriptor.MinimumExitCount AndAlso exitcount <= descriptor.MaximumExitCount
         Loop Until found
-        Return Character.Create(_data, CharacterType.Larrikin, location)
+        Return Character.Create(_data, characterType, location)
     End Function
 
     Public Sub TurnLeft() Implements IWorld.TurnLeft

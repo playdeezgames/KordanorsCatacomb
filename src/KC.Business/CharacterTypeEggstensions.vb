@@ -11,7 +11,8 @@ Friend Module CharacterTypeEggstensions
                     {
                         {StatisticType.Wounds, 0},
                         {StatisticType.MaximumHP, 3}
-                    })
+                    },
+                    isEnemy:=False)
             },
             {
                 CharacterType.Blob,

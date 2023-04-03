@@ -17,15 +17,15 @@
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
-        'frame
         DrawFrame(displayBuffer)
+        DrawPlayerStats(displayBuffer)
+        DrawStatusBar(displayBuffer)
+    End Sub
 
+    Private Sub DrawPlayerStats(displayBuffer As IPixelSink(Of Hue))
         Dim character = World.PlayerCharacter
         Dim font = Fonts(GameFont.Font4x6)
         font.WriteText(displayBuffer, (0, 0), $"HP: {character.HP}/{character.MaximumHP}", Hue.Red)
-
-        'status bar
-        DrawStatusBar(displayBuffer)
     End Sub
 
     Private Sub DrawFrame(displayBuffer As IPixelSink(Of Hue))
@@ -45,6 +45,11 @@
         Dim rightBorder = location.GetBorder(World.RightDirection)
         If rightBorder.BorderType = Data.BorderType.Door Then
             drawer.DrawRightDoor()
+        End If
+        Dim enemy = location.Enemies.FirstOrDefault
+        If enemy IsNot Nothing Then
+            Dim sprite = CharacterSprites.GetSprite(enemy.CharacterType)
+            sprite.StretchTo(displayBuffer, (56, 22), (4, 4), Function(x) x <> Hue.LightMagenta)
         End If
     End Sub
 

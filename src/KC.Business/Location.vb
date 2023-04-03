@@ -23,6 +23,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Enemies As IEnumerable(Of ICharacter) Implements ILocation.Enemies
+        Get
+            Return LocationData.Characters.Where(Function(x) _data.Characters(x).CharacterType.ToDescriptor.IsEnemy).Select(Function(x) New Character(_data, x))
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, locationId As Integer)
         _data = data
         _locationId = locationId

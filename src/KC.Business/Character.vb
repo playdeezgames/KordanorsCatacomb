@@ -30,11 +30,17 @@ Friend Class Character
             Return Nothing
         End Get
         Set(value As ILocation)
+            If CharacterData.Location.HasValue Then
+                _data.Locations(CharacterData.Location.Value).Characters.Remove(Id)
+            End If
             If value Is Nothing Then
                 CharacterData.Location = Nothing
                 Return
             End If
             CharacterData.Location = value.Id
+            If CharacterData.Location.HasValue Then
+                _data.Locations(CharacterData.Location.Value).Characters.Add(Id)
+            End If
         End Set
     End Property
 
@@ -52,14 +58,15 @@ Friend Class Character
         Dim characterId = data.Characters.Count
         Dim characterData = New CharacterData With
                              {
-                                .Location = location.Id,
                                 .CharacterType = characterType
                              }
         For Each entry In characterType.ToDescriptor.Statistics
             characterData.Statistics(entry.Key) = entry.Value
         Next
         data.Characters.Add(characterData)
-        Return New Character(data, characterId)
+        Return New Character(data, characterId) With {
+            .Location = location
+        }
     End Function
 
     Public ReadOnly Property HP As Integer Implements ICharacter.HP
@@ -71,6 +78,12 @@ Friend Class Character
     Public ReadOnly Property MaximumHP As Integer Implements ICharacter.MaximumHP
         Get
             Return GetStatistic(StatisticType.MaximumHP)
+        End Get
+    End Property
+
+    Public ReadOnly Property CharacterType As CharacterType Implements ICharacter.CharacterType
+        Get
+            Return CharacterData.CharacterType
         End Get
     End Property
 End Class
