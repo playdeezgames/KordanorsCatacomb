@@ -6,4 +6,5 @@
     About
     Prolog
     Navigation
+    Neutral
 End Enum
