@@ -1,4 +1,4 @@
 ﻿Public Enum StatisticType
     Wounds
-    MaximumHealth
+    MaximumHP
 End Enum

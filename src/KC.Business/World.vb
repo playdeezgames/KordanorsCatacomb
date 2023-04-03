@@ -126,13 +126,7 @@
     End Sub
 
     Private Function CreateCharacter(characterType As CharacterType, location As ILocation) As ICharacter
-        Dim characterId = _data.Characters.Count
-        _data.Characters.Add(New CharacterData With
-                             {
-                                .Location = location.Id,
-                                .CharacterType = characterType
-                             })
-        Return New Character(_data, characterId)
+        Return Character.Create(_data, characterType, location)
     End Function
 
     Private Function CreateBorder() As IBorder

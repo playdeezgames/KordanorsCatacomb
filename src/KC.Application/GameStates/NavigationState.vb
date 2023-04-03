@@ -17,8 +17,19 @@
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+        'frame
+        DrawFrame(displayBuffer)
+
+        Dim character = World.PlayerCharacter
+        Dim font = Fonts(GameFont.Font4x6)
+        font.WriteText(displayBuffer, (0, 0), $"HP: {character.HP}/{character.MaximumHP}", Hue.Red)
+
+        'status bar
+        DrawStatusBar(displayBuffer)
+    End Sub
+
+    Private Sub DrawFrame(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (FrameWidth, FrameHeight), Hue.Black)
-        displayBuffer.Fill((0, FrameHeight), (ViewWidth, ViewHeight - FrameHeight), Hue.Green)
         Dim drawer As New Drawer(Of Hue)(displayBuffer, hue:=Hue.DarkGray)
         drawer.DrawFrame()
         Dim character = World.PlayerCharacter
@@ -35,6 +46,10 @@
         If rightBorder.BorderType = Data.BorderType.Door Then
             drawer.DrawRightDoor()
         End If
+    End Sub
+
+    Private Sub DrawStatusBar(displayBuffer As IPixelSink(Of Hue))
+        displayBuffer.Fill((0, FrameHeight), (ViewWidth, ViewHeight - FrameHeight), Hue.Green)
         Dim font = Fonts(GameFont.Font4x6)
         font.WriteText(displayBuffer, (0, FrameHeight + 2), "Arrows: Move/Turn      Esc: Menu", Hue.White)
     End Sub
