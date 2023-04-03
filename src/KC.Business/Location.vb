@@ -29,6 +29,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasEnemies As Boolean Implements ILocation.HasEnemies
+        Get
+            Return LocationData.Characters.Any(Function(x) _data.Characters(x).CharacterType.ToDescriptor.IsEnemy)
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, locationId As Integer)
         _data = data
         _locationId = locationId

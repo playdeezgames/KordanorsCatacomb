@@ -12,6 +12,10 @@
     End Sub
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)
+        If World.PlayerCharacter.Location.HasEnemies Then
+            SetState(GameState.Combat)
+            Return
+        End If
         SetState(GameState.Navigation)
     End Sub
 End Class

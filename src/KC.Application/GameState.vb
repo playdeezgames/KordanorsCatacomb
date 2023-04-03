@@ -7,4 +7,5 @@
     Prolog
     Navigation
     Neutral
+    Combat
 End Enum
