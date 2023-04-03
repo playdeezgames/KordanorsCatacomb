@@ -53,7 +53,19 @@ Public Class World
     Public Sub Generate() Implements IWorld.Generate
         Clear()
         GenerateMaze()
+        PopulateMaze()
         GeneratePlayerCharacter()
+    End Sub
+
+    Private Sub PopulateMaze()
+        For Each characterType In AllCharacterTypes
+            Dim descriptor = characterType.ToDescriptor
+            Dim spawnCount = descriptor.SpawnCount
+            While spawnCount > 0
+                GenerateCharacter(characterType)
+                spawnCount -= 1
+            End While
+        Next
     End Sub
 
     Private Sub GeneratePlayerCharacter()
