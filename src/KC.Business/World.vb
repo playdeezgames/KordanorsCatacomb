@@ -1,4 +1,6 @@
-﻿Public Class World
+﻿Imports System.Data.Common
+
+Public Class World
     Implements IWorld
     Private ReadOnly _data As WorldData
     Sub New(data As WorldData)
@@ -51,9 +53,28 @@
     Public Sub Generate() Implements IWorld.Generate
         Clear()
         GenerateMaze()
-        PlayerCharacter = CreateCharacter(CharacterType.Larrikin, New Location(_data, _data.DungeonLocations(0, 0)))
+        GeneratePlayerCharacter()
+    End Sub
+
+    Private Sub GeneratePlayerCharacter()
+        PlayerCharacter = GenerateCharacter(CharacterType.Larrikin)
+
         _data.Facing = RNG.FromList(New List(Of Direction) From {Direction.North, Direction.East, Direction.South, Direction.West})
     End Sub
+
+    Private Function GenerateCharacter(characterType As CharacterType) As ICharacter
+        Dim descriptor = characterType.ToDescriptor
+        Dim location As ILocation
+        Dim found As Boolean
+        Do
+            Dim column = RNG.FromRange(0, MazeColumns - 1)
+            Dim row = RNG.FromRange(0, MazeRows - 1)
+            location = New Location(_data, _data.DungeonLocations(column, row))
+            Dim exitcount = location.ExitCount
+            found = exitcount >= descriptor.MinimumExitCount AndAlso exitcount <= descriptor.MaximumExitCount
+        Loop Until found
+        Return Character.Create(_data, CharacterType.Larrikin, location)
+    End Function
 
     Public Sub TurnLeft() Implements IWorld.TurnLeft
         Facing = Facing.ToDescriptor.LeftDirection
@@ -126,12 +147,7 @@
                 End If
             Next
         Next
-        PlayerCharacter = CreateCharacter(CharacterType.Larrikin, locations(0, 0))
     End Sub
-
-    Private Function CreateCharacter(characterType As CharacterType, location As ILocation) As ICharacter
-        Return Character.Create(_data, characterType, location)
-    End Function
 
     Private Function CreateBorder() As IBorder
         Dim borderId = _data.Borders.Count

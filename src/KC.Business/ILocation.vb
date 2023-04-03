@@ -4,4 +4,5 @@
     Function GetBorder(direction As Direction) As IBorder
     Sub SetNeighbor(direction As Direction, location As ILocation)
     Function GetNeighbor(direction As Direction) As ILocation
+    ReadOnly Property ExitCount As Integer
 End Interface

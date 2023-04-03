@@ -15,6 +15,14 @@
         End Get
     End Property
 
+    Public ReadOnly Property ExitCount As Integer Implements ILocation.ExitCount
+        Get
+            Return LocationData.Borders.Keys.
+                Where(Function(x) GetBorder(x).BorderType.ToDescriptor.IsExit).
+                Count()
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, locationId As Integer)
         _data = data
         _locationId = locationId
