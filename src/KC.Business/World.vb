@@ -76,9 +76,14 @@
         Next
     End Sub
 
+
+
     Private Sub GeneratePlayerCharacter()
         PlayerCharacter = GenerateCharacter(CharacterType.Larrikin)
+        RandomizeFacing()
+    End Sub
 
+    Private Sub RandomizeFacing()
         _data.Facing = RNG.FromList(New List(Of Direction) From {Direction.North, Direction.East, Direction.South, Direction.West})
     End Sub
 
@@ -105,10 +110,8 @@
     End Sub
 
     Public Sub Move() Implements IWorld.Move
-        Dim location = PlayerCharacter.Location
-        Dim border = location.GetBorder(Facing)
-        If border.BorderType = BorderType.Door Then
-            PlayerCharacter.Location = location.GetNeighbor(Facing)
+        If CanMove() Then
+            PlayerCharacter.Location = PlayerCharacter.Location.GetNeighbor(Facing)
         End If
     End Sub
 
@@ -184,4 +187,26 @@
     Public Sub DismissMessage() Implements IWorld.DismissMessage
         _data.Messages.RemoveAt(0)
     End Sub
+
+    Public Sub Run() Implements IWorld.Run
+        RandomizeFacing()
+        Dim msg As IMessage
+        If CanMove Then
+            Move()
+            msg = Message.Create(_data)
+            msg.AddLine(Mood.Gray, $"{PlayerCharacter.Name} runs!")
+            Return
+        End If
+        msg = Message.Create(_data)
+        msg.AddLine(Mood.Gray, $"{PlayerCharacter.Name} cannot run!")
+        For Each enemy In PlayerCharacter.Location.Enemies
+            enemy.Fight()
+        Next
+    End Sub
+
+    Private Function CanMove() As Boolean
+        Dim location = PlayerCharacter.Location
+        Dim border = location.GetBorder(Facing)
+        Return border.BorderType = BorderType.Door
+    End Function
 End Class

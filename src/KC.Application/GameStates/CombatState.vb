@@ -26,7 +26,8 @@
                         World.PlayerCharacter.Fight()
                         SetState(GameState.Neutral)
                     Case RunText
-                        SetState(GameState.Navigation)
+                        World.Run()
+                        SetState(GameState.Neutral)
                 End Select
         End Select
     End Sub

@@ -4,6 +4,7 @@ Public Interface IWorld
     Sub TurnRight()
     Sub Move()
     Sub DismissMessage()
+    Sub Run()
     Property PlayerCharacter As ICharacter
     Property Facing As Direction
     ReadOnly Property AheadDirection As Direction
