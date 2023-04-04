@@ -9,4 +9,5 @@
     Neutral
     Combat
     Message
+    GameOver
 End Enum
