@@ -22,5 +22,12 @@
             Dim sprite = CharacterSprites.GetSprite(enemy.CharacterType)
             sprite.StretchTo(displayBuffer, (56, 22), (4, 4), Function(x) x <> Hue.LightMagenta)
         End If
+        DrawPlayerStats(displayBuffer)
+    End Sub
+
+    Private Sub DrawPlayerStats(displayBuffer As IPixelSink(Of Hue))
+        Dim character = World.PlayerCharacter
+        Dim font = Fonts(GameFont.Font4x6)
+        font.WriteText(displayBuffer, (0, 0), $"HP: {character.HP}/{character.MaximumHP}", Hue.Red)
     End Sub
 End Module

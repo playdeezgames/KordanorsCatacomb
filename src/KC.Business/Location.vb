@@ -23,21 +23,28 @@
         End Get
     End Property
 
+    Private ReadOnly Property Characters As IEnumerable(Of ICharacter)
+        Get
+            Return LocationData.Characters.Select(Function(x) New Character(_data, x))
+        End Get
+    End Property
+
+
     Public ReadOnly Property Enemies As IEnumerable(Of ICharacter) Implements ILocation.Enemies
         Get
-            Return LocationData.Characters.Where(Function(x) _data.Characters(x).CharacterType.ToDescriptor.IsEnemy).Select(Function(x) New Character(_data, x))
+            Return Characters.Where(Function(x) Not x.IsDead AndAlso x.IsEnemy)
         End Get
     End Property
 
     Public ReadOnly Property HasEnemies As Boolean Implements ILocation.HasEnemies
         Get
-            Return LocationData.Characters.Any(Function(x) _data.Characters(x).CharacterType.ToDescriptor.IsEnemy)
+            Return Enemies.Any
         End Get
     End Property
 
     Public ReadOnly Property Allies As IEnumerable(Of ICharacter) Implements ILocation.Allies
         Get
-            Return LocationData.Characters.Where(Function(x) Not _data.Characters(x).CharacterType.ToDescriptor.IsEnemy).Select(Function(x) New Character(_data, x))
+            Return Characters.Where(Function(x) Not x.IsDead And Not x.IsEnemy)
         End Get
     End Property
 

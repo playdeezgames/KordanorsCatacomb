@@ -86,8 +86,11 @@
         If IsDead Then
             Return
         End If
-        Dim msg As IMessage = Message.Create(_data)
         Dim target = RNG.FromEnumerable(DetermineAttackTargets())
+        If target.IsDead Then
+            Return
+        End If
+        Dim msg As IMessage = Message.Create(_data)
         msg.AddLine(Mood.Gray, $"{Name} attacks {target.Name}!")
         Dim attackRoll = RollAttack()
         msg.AddLine(Mood.Gray, $"{Name} rolls {attackRoll}")
@@ -163,6 +166,12 @@
     Public ReadOnly Property IsDead As Boolean Implements ICharacter.IsDead
         Get
             Return HP = 0
+        End Get
+    End Property
+
+    Public ReadOnly Property IsEnemy As Boolean Implements ICharacter.IsEnemy
+        Get
+            Return CharacterType.ToDescriptor.IsEnemy
         End Get
     End Property
 End Class

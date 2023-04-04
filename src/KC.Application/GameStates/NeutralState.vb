@@ -12,6 +12,7 @@
     End Sub
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)
+        'player dead?
         If World.HasMessages Then
             SetState(GameState.Message)
             Return

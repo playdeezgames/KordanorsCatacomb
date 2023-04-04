@@ -19,14 +19,7 @@
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         Frame.Draw(displayBuffer)
-        DrawPlayerStats(displayBuffer)
         DrawStatusBar(displayBuffer)
-    End Sub
-
-    Private Sub DrawPlayerStats(displayBuffer As IPixelSink(Of Hue))
-        Dim character = World.PlayerCharacter
-        Dim font = Fonts(GameFont.Font4x6)
-        font.WriteText(displayBuffer, (0, 0), $"HP: {character.HP}/{character.MaximumHP}", Hue.Red)
     End Sub
 
     Private Sub DrawStatusBar(displayBuffer As IPixelSink(Of Hue))
