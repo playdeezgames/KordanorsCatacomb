@@ -4,6 +4,7 @@
     Function GetBorder(direction As Direction) As IBorder
     Sub SetNeighbor(direction As Direction, location As ILocation)
     Function GetNeighbor(direction As Direction) As ILocation
+    ReadOnly Property Allies As IEnumerable(Of ICharacter)
     ReadOnly Property ExitCount As Integer
     ReadOnly Property Enemies As IEnumerable(Of ICharacter)
     ReadOnly Property HasEnemies As Boolean

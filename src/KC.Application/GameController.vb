@@ -10,6 +10,7 @@ Public Class GameController
         SetState(GameState.Prolog, New PrologState(Me, AddressOf SetCurrentState))
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState))
         SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Message, New MessageState(Me, AddressOf SetCurrentState))
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState))
         SetState(GameState.Combat, New CombatState(Me, AddressOf SetCurrentState))
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))

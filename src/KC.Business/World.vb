@@ -1,12 +1,9 @@
-﻿Imports System.Data.Common
-
-Public Class World
+﻿Public Class World
     Implements IWorld
     Private ReadOnly _data As WorldData
     Sub New(data As WorldData)
         _data = data
     End Sub
-
     Public Property PlayerCharacter As ICharacter Implements IWorld.PlayerCharacter
         Get
             If _data.PlayerCharacter.HasValue Then
@@ -22,7 +19,6 @@ Public Class World
             _data.PlayerCharacter = value.Id
         End Set
     End Property
-
     Public Property Facing As Direction Implements IWorld.Facing
         Get
             Return _data.Facing
@@ -47,6 +43,18 @@ Public Class World
     Public ReadOnly Property LeftDirection As Direction Implements IWorld.LeftDirection
         Get
             Return Facing.ToDescriptor.LeftDirection
+        End Get
+    End Property
+
+    Public ReadOnly Property HasMessages As Boolean Implements IWorld.HasMessages
+        Get
+            Return _data.Messages.Any
+        End Get
+    End Property
+
+    Public ReadOnly Property NextMessage As IMessage Implements IWorld.NextMessage
+        Get
+            Return New Message(_data, 0)
         End Get
     End Property
 
@@ -172,4 +180,8 @@ Public Class World
         _data.Locations.Add(New LocationData)
         Return New Location(_data, locationId)
     End Function
+
+    Public Sub DismissMessage() Implements IWorld.DismissMessage
+        _data.Messages.RemoveAt(0)
+    End Sub
 End Class

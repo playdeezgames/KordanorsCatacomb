@@ -5,4 +5,5 @@ Public Class WorldData
     Public Property PlayerCharacter As Integer?
     Public Property Facing As Direction
     Public Property DungeonLocations As Integer(,)
+    Public Property Messages As New List(Of MessageData)
 End Class

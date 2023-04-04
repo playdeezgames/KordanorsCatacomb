@@ -1,6 +1,4 @@
-﻿Imports System.Data
-
-Friend Class Character
+﻿Friend Class Character
     Implements ICharacter
 
     Private ReadOnly _data As WorldData
@@ -44,11 +42,18 @@ Friend Class Character
         End Set
     End Property
 
-    Private ReadOnly Property Wounds As Integer
+    Private Property Wounds As Integer
         Get
             Return GetStatistic(StatisticType.Wounds)
         End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.Wounds, value)
+        End Set
     End Property
+
+    Private Sub SetStatistic(statisticType As StatisticType, value As Integer)
+        CharacterData.Statistics(statisticType) = value
+    End Sub
 
     Private Function GetStatistic(statisticType As StatisticType) As Integer
         Return CharacterData.Statistics(statisticType)
@@ -69,6 +74,68 @@ Friend Class Character
         }
     End Function
 
+    Private Function DetermineAttackTargets() As IEnumerable(Of ICharacter)
+        If CharacterType.ToDescriptor.IsEnemy Then
+            Return Location.Allies
+        Else
+            Return Location.Enemies
+        End If
+    End Function
+
+    Public Sub Fight() Implements ICharacter.Fight
+        If IsDead Then
+            Return
+        End If
+        Dim msg As IMessage = Message.Create(_data)
+        Dim target = RNG.FromEnumerable(DetermineAttackTargets())
+        msg.AddLine(Mood.Gray, $"{Name} attacks {target.Name}!")
+        Dim attackRoll = RollAttack()
+        msg.AddLine(Mood.Gray, $"{Name} rolls {attackRoll}")
+        Dim defendRoll = target.RollDefend()
+        msg.AddLine(Mood.Gray, $"{target.Name} rolls {defendRoll}")
+        Dim damage = Math.Clamp(attackRoll - defendRoll, 0, attackRoll)
+        If damage > 0 Then
+            msg.AddLine(Mood.Gray, $"{target.Name} takes {damage} damage!")
+            target.AddWounds(damage)
+            If target.IsDead Then
+                msg.AddLine(Mood.Gray, $"{Name} kills {target.Name}!")
+            End If
+        Else
+            msg.AddLine(Mood.Gray, $"{Name} misses!")
+        End If
+        If Not CharacterType.ToDescriptor.IsEnemy Then
+            For Each enemy In Location.Enemies
+                enemy.Fight()
+            Next
+        End If
+    End Sub
+
+    Public Function RollDefend() As Integer Implements ICharacter.RollDefend
+        Dim dice = GetStatistic(StatisticType.Defend)
+        Dim maximum = GetStatistic(StatisticType.MaximumDefend)
+        Dim roll = 0
+        While dice > 0 AndAlso roll < maximum
+            roll = RNG.RollDice("1d6/6")
+            dice -= 1
+        End While
+        Return roll
+    End Function
+
+    Public Function RollAttack() As Integer Implements ICharacter.RollAttack
+        Dim dice = GetStatistic(StatisticType.Attack)
+        Dim maximum = GetStatistic(StatisticType.MaximumAttack)
+        Dim roll = 0
+        While dice > 0 AndAlso roll < maximum
+            roll = RNG.RollDice("1d6/6")
+            dice -= 1
+        End While
+        Return roll
+    End Function
+
+    Public Sub AddWounds(wounds As Integer) Implements ICharacter.AddWounds
+        Me.Wounds += wounds
+    End Sub
+
     Public ReadOnly Property HP As Integer Implements ICharacter.HP
         Get
             Return Math.Clamp(MaximumHP - Wounds, 0, MaximumHP)
@@ -84,6 +151,18 @@ Friend Class Character
     Public ReadOnly Property CharacterType As CharacterType Implements ICharacter.CharacterType
         Get
             Return CharacterData.CharacterType
+        End Get
+    End Property
+
+    Public ReadOnly Property Name As String Implements ICharacter.Name
+        Get
+            Return CharacterType.ToDescriptor.Name
+        End Get
+    End Property
+
+    Public ReadOnly Property IsDead As Boolean Implements ICharacter.IsDead
+        Get
+            Return HP = 0
         End Get
     End Property
 End Class

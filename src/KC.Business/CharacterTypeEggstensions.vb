@@ -7,20 +7,30 @@ Friend Module CharacterTypeEggstensions
             {
                 CharacterType.Larrikin,
                 New CharacterTypeDescriptor(
+                    "Larrikin",
                     New Dictionary(Of StatisticType, Integer) From
                     {
                         {StatisticType.Wounds, 0},
-                        {StatisticType.MaximumHP, 3}
+                        {StatisticType.MaximumHP, 3},
+                        {StatisticType.Attack, 3},
+                        {StatisticType.MaximumAttack, 1},
+                        {StatisticType.Defend, 4},
+                        {StatisticType.MaximumDefend, 2}
                     },
                     isEnemy:=False)
             },
             {
                 CharacterType.Blob,
                 New CharacterTypeDescriptor(
+                    "Blob",
                     New Dictionary(Of StatisticType, Integer) From
                     {
                         {StatisticType.Wounds, 0},
-                        {StatisticType.MaximumHP, 1}
+                        {StatisticType.MaximumHP, 1},
+                        {StatisticType.Attack, 2},
+                        {StatisticType.MaximumAttack, 1},
+                        {StatisticType.Defend, 1},
+                        {StatisticType.MaximumDefend, 1}
                     },
                     spawnCount:=40)
             }

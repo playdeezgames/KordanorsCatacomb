@@ -8,4 +8,5 @@
     Navigation
     Neutral
     Combat
+    Message
 End Enum
