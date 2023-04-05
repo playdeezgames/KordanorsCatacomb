@@ -82,37 +82,6 @@
         End If
     End Function
 
-    Public Sub Fight() Implements ICharacter.Fight
-        If IsDead Then
-            Return
-        End If
-        Dim target = RNG.FromEnumerable(DetermineAttackTargets())
-        If target.IsDead Then
-            Return
-        End If
-        Dim msg As IMessage = Message.Create(_data)
-        msg.AddLine(Mood.Gray, $"{Name} attacks {target.Name}!")
-        Dim attackRoll = RollAttack()
-        msg.AddLine(Mood.Gray, $"{Name} rolls {attackRoll}")
-        Dim defendRoll = target.RollDefend()
-        msg.AddLine(Mood.Gray, $"{target.Name} rolls {defendRoll}")
-        Dim damage = Math.Clamp(attackRoll - defendRoll, 0, attackRoll)
-        If damage > 0 Then
-            msg.AddLine(Mood.Gray, $"{target.Name} takes {damage} damage!")
-            target.AddWounds(damage)
-            If target.IsDead Then
-                msg.AddLine(Mood.Gray, $"{Name} kills {target.Name}!")
-            End If
-        Else
-            msg.AddLine(Mood.Gray, $"{Name} misses!")
-        End If
-        If Not CharacterType.ToDescriptor.IsEnemy Then
-            For Each enemy In Location.Enemies
-                enemy.Fight()
-            Next
-        End If
-    End Sub
-
     Public Function RollDefend() As Integer Implements ICharacter.RollDefend
         Dim dice = GetStatistic(StatisticType.Defend)
         Dim maximum = GetStatistic(StatisticType.MaximumDefend)
@@ -137,6 +106,46 @@
 
     Public Sub AddWounds(wounds As Integer) Implements ICharacter.AddWounds
         Me.Wounds += wounds
+    End Sub
+
+    Public Sub Fight(Optional index As Integer? = Nothing) Implements ICharacter.Fight
+        If IsDead Then
+            Return
+        End If
+        Dim targets = DetermineAttackTargets()
+        If Not targets.Any Then
+            Return
+        End If
+        Dim target = RNG.FromEnumerable(targets)
+        If target.IsDead Then
+            Return
+        End If
+        Dim msg As IMessage = Message.Create(_data)
+        If index IsNot Nothing Then
+            msg.AddLine(Mood.Gray, $"Counterattack #{index.Value}")
+        End If
+        msg.AddLine(Mood.Gray, $"{Name} attacks {target.Name}!")
+        Dim attackRoll = RollAttack()
+        msg.AddLine(Mood.Gray, $"{Name} rolls {attackRoll}")
+        Dim defendRoll = target.RollDefend()
+        msg.AddLine(Mood.Gray, $"{target.Name} rolls {defendRoll}")
+        Dim damage = Math.Clamp(attackRoll - defendRoll, 0, attackRoll)
+        If damage > 0 Then
+            msg.AddLine(Mood.Gray, $"{target.Name} takes {damage} damage!")
+            target.AddWounds(damage)
+            If target.IsDead Then
+                msg.AddLine(Mood.Gray, $"{Name} kills {target.Name}!")
+            End If
+        Else
+            msg.AddLine(Mood.Gray, $"{Name} misses!")
+        End If
+        If Not CharacterType.ToDescriptor.IsEnemy Then
+            Dim counter As Integer = 1
+            For Each enemy In Location.Enemies
+                enemy.Fight(counter)
+                counter += 1
+            Next
+        End If
     End Sub
 
     Public ReadOnly Property HP As Integer Implements ICharacter.HP

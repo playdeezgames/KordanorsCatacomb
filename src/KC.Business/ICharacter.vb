@@ -4,7 +4,7 @@
     ReadOnly Property HP As Integer
     ReadOnly Property MaximumHP As Integer
     ReadOnly Property CharacterType As CharacterType
-    Sub Fight()
+    Sub Fight(Optional index As Integer? = Nothing)
     Function RollDefend() As Integer
     Function RollAttack() As Integer
     Sub AddWounds(wounds As Integer)
