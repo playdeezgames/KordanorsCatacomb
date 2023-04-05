@@ -8,6 +8,7 @@
     Function RollDefend() As Integer
     Function RollAttack() As Integer
     Sub AddWounds(wounds As Integer)
+    Sub UseItem(item As IItem)
     ReadOnly Property IsEnemy As Boolean
     ReadOnly Property IsDead As Boolean
     ReadOnly Property Name As String

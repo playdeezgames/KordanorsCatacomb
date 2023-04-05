@@ -1,4 +1,4 @@
-﻿Friend Class GroundState
+﻿Friend Class CombatInventoryState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
@@ -6,32 +6,28 @@
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
-        Dim itemCount = World.PlayerCharacter.Location.Items.Count
+        Dim itemCount = World.PlayerCharacter.Inventory.UsableItems.Count
         Select Case command
             Case Command.Up
                 InventoryIndex = (InventoryIndex + itemCount - 1) Mod itemCount
             Case Command.Down
                 InventoryIndex = (InventoryIndex + 1) Mod itemCount
             Case Command.Red
-                SetState(GameState.ModeSelect)
+                SetState(GameState.Neutral)
             Case Command.Green, Command.Blue
-                TakeItem()
+                UseItem()
         End Select
     End Sub
 
-    Private Sub TakeItem()
-        Dim item = World.PlayerCharacter.Location.Items.ToList()(InventoryIndex)
-        item.Location = World.PlayerCharacter.Inventory
-        If Not World.PlayerCharacter.Location.HasItems Then
-            SetState(GameState.ModeSelect)
-            Return
-        End If
-        InventoryIndex = InventoryIndex Mod World.PlayerCharacter.Location.Items.Count
+    Private Sub UseItem()
+        Dim item = World.PlayerCharacter.Inventory.UsableItems.ToList()(InventoryIndex)
+        World.PlayerCharacter.UseItem(item)
+        SetState(GameState.Neutral)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim items = World.PlayerCharacter.Location.Items
+        Dim items = World.PlayerCharacter.Inventory.UsableItems
         Dim font = Fonts(GameFont.Font5x7)
         Dim y = FrameHeight \ 2 - font.Height \ 2 - GameContext.InventoryIndex * font.Height
         Dim index = 0
@@ -44,10 +40,11 @@
         Next
         DrawStatusBar(displayBuffer)
     End Sub
+
     Private Sub DrawStatusBar(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, FrameHeight), (ViewWidth, ViewHeight - FrameHeight), Hue.Green)
         Dim font = Fonts(GameFont.Font4x6)
-        Dim text = "Arrows: Select       Space: Take"
+        Dim text = "Arrows: Select        Space: Use"
         font.WriteText(displayBuffer, (FrameWidth \ 2 - font.TextWidth(text) \ 2, FrameHeight + 2), text, Hue.White)
     End Sub
 

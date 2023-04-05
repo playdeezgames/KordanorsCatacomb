@@ -148,6 +148,16 @@
         End If
     End Sub
 
+    Public Sub UseItem(item As IItem) Implements ICharacter.UseItem
+        If Not item.IsUsable Then
+            Dim msg = Message.Create(_data)
+            msg.AddLine(Mood.Gray, "You cannot use that.")
+            Return
+        End If
+        item.OnUse(Me)
+        item.Location = Nothing
+    End Sub
+
     Public ReadOnly Property HP As Integer Implements ICharacter.HP
         Get
             Return Math.Clamp(MaximumHP - Wounds, 0, MaximumHP)

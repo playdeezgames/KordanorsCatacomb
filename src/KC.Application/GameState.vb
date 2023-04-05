@@ -12,4 +12,5 @@
     GameOver
     ModeSelect
     Ground
+    CombatInventory
 End Enum

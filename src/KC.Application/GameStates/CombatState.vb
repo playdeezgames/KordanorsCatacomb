@@ -1,11 +1,13 @@
 ﻿Friend Class CombatState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private Const FightText = "<- FIGHT! ->"
+    Private Const UseText = "<- USE! ->"
     Private Const RunText = "<- RUN! ->"
     Private ReadOnly _menuItems As IReadOnlyList(Of String) =
         New List(Of String) From
         {
             FightText,
+            UseText,
             RunText
         }
     Private _currentMenuItem As Integer = 0
@@ -25,11 +27,23 @@
                     Case FightText
                         World.PlayerCharacter.Fight()
                         SetState(GameState.Neutral)
+                    Case UseText
+                        HandleUse()
                     Case RunText
                         World.Run()
                         SetState(GameState.Neutral)
                 End Select
         End Select
+    End Sub
+
+    Private Sub HandleUse()
+        If Not World.PlayerCharacter.Inventory.HasUsableItems Then
+            World.AddMessage((Mood.Gray, "You have no items."))
+            SetState(GameState.Neutral)
+            Return
+        End If
+        InventoryIndex = 0
+        SetState(GameState.CombatInventory)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

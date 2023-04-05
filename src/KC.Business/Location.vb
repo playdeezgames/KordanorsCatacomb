@@ -66,6 +66,18 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasUsableItems As Boolean Implements ILocation.HasUsableItems
+        Get
+            Return Items.Any(Function(x) x.IsUsable)
+        End Get
+    End Property
+
+    Public ReadOnly Property UsableItems As IEnumerable(Of IItem) Implements ILocation.UsableItems
+        Get
+            Return Items.Where(Function(x) x.IsUsable)
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, locationId As Integer)
         _data = data
         _locationId = locationId

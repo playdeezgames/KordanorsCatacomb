@@ -52,6 +52,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property IsUsable As Boolean Implements IItem.IsUsable
+        Get
+            Return ItemType.ToDescriptor.IsUsable
+        End Get
+    End Property
+
     Friend Shared Function Create(data As WorldData, itemType As ItemType, location As ILocation) As IItem
         Dim itemId = data.Items.Count
         Dim itemData = New ItemData With
@@ -63,4 +69,8 @@
             .Location = location
         }
     End Function
+
+    Public Sub OnUse(character As ICharacter) Implements IItem.OnUse
+        ItemType.ToDescriptor.OnUse.Invoke(_data, character)
+    End Sub
 End Class

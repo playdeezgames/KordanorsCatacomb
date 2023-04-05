@@ -11,4 +11,6 @@
     ReadOnly Property Items As IEnumerable(Of IItem)
     ReadOnly Property ItemTypes As IEnumerable(Of ItemType)
     ReadOnly Property HasItems As Boolean
+    ReadOnly Property HasUsableItems As Boolean
+    ReadOnly Property UsableItems As IEnumerable(Of IItem)
 End Interface
