@@ -48,6 +48,18 @@
         End Get
     End Property
 
+    Public ReadOnly Property ItemTypes As IEnumerable(Of ItemType) Implements ILocation.ItemTypes
+        Get
+            Return Items.Select(Function(x) x.ItemType).Distinct()
+        End Get
+    End Property
+
+    Public ReadOnly Property Items As IEnumerable(Of IItem) Implements ILocation.Items
+        Get
+            Return LocationData.Items.Select(Function(x) New Item(_data, x))
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, locationId As Integer)
         _data = data
         _locationId = locationId

@@ -8,4 +8,6 @@
     ReadOnly Property ExitCount As Integer
     ReadOnly Property Enemies As IEnumerable(Of ICharacter)
     ReadOnly Property HasEnemies As Boolean
+    ReadOnly Property Items As IEnumerable(Of IItem)
+    ReadOnly Property ItemTypes As IEnumerable(Of ItemType)
 End Interface

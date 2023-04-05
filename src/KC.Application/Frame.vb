@@ -19,13 +19,53 @@ Friend Module Frame
         If rightBorder.BorderType = Data.BorderType.Door Then
             drawer.DrawRightDoor()
         End If
+        DrawItems(displayBuffer, location)
+        DrawEnemy(displayBuffer, location)
+        DrawPlayerStats(displayBuffer)
+        DrawEnemyCount(displayBuffer)
+    End Sub
+
+    Private Sub DrawEnemy(displayBuffer As IPixelSink(Of Hue), location As ILocation)
         Dim enemy = location.Enemies.FirstOrDefault
         If enemy IsNot Nothing Then
             Dim sprite = CharacterSprites.GetSprite(enemy.CharacterType)
             sprite.StretchTo(displayBuffer, (56, 22), (4, 4), Function(x) x <> Hue.LightMagenta)
         End If
-        DrawPlayerStats(displayBuffer)
-        DrawEnemyCount(displayBuffer)
+    End Sub
+
+    Private ReadOnly drawTable As IReadOnlyDictionary(Of ItemType, Action(Of Drawer(Of Hue))) =
+        New Dictionary(Of ItemType, Action(Of Drawer(Of Hue))) From
+        {
+            {
+                ItemType.Köttbulle,
+                Sub(d)
+                    d.
+                        MoveTo(FrameWidth \ 4, FrameHeight * 7 \ 8).
+                        Color(Hue.Brown).
+                        Right(1).
+                        DownRight(1).
+                        Down(1).
+                        DownLeft(1).
+                        Left(1).
+                        UpLeft(1).
+                        Up(1).
+                        UpRight(1)
+                End Sub
+            },
+            {
+                ItemType.Knorva,
+                Sub(d)
+
+                End Sub
+            }
+        }
+
+    Private Sub DrawItems(displayBuffer As IPixelSink(Of Hue), location As ILocation)
+        Dim itemTypes As IEnumerable(Of ItemType) = location.ItemTypes
+        Dim drawer As New Drawer(Of Hue)(displayBuffer, (0, 0), Hue.White)
+        For Each itemType In itemTypes
+            drawTable(itemType)(drawer)
+        Next
     End Sub
 
     Private Sub DrawEnemyCount(displayBuffer As IPixelSink(Of Hue))
