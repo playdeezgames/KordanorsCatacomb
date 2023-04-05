@@ -1,5 +1,16 @@
-﻿Friend Class NavigationState
+﻿Friend Class ModeSelectState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Private Const NavigationText = "<- Navigate ->"
+    Private Const GroundText = "<- Ground ->"
+    Private Const InventoryText = "<- Inventory ->"
+    Private ReadOnly _menuItems As IReadOnlyList(Of String) =
+        New List(Of String) From
+        {
+            NavigationText,
+            GroundText,
+            InventoryText
+        }
+    Private _currentMenuItem As Integer = 0
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
         MyBase.New(parent, setState)
@@ -7,15 +18,18 @@
 
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
-            Case Command.Left
-                World.TurnLeft()
             Case Command.Right
-                World.TurnRight()
-            Case Command.Up
-                World.Move()
-                SetState(GameState.Neutral)
+                _currentMenuItem = (_currentMenuItem + 1) Mod _menuItems.Count
+            Case Command.Left
+                _currentMenuItem = (_currentMenuItem + _menuItems.Count - 1) Mod _menuItems.Count
             Case Command.Green, Command.Blue
-                SetState(GameState.ModeSelect)
+                Select Case _menuItems(_currentMenuItem)
+                    Case NavigationText
+                        SetState(GameState.Neutral)
+                End Select
+            Case Command.Red
+                _currentMenuItem = 0
+                SetState(GameState.Neutral)
         End Select
     End Sub
 
@@ -27,7 +41,7 @@
     Private Sub DrawStatusBar(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, FrameHeight), (ViewWidth, ViewHeight - FrameHeight), Hue.Green)
         Dim font = Fonts(GameFont.Font4x6)
-        Dim text = "Space/Enter: Change Mode"
+        Dim text = _menuItems(_currentMenuItem)
         font.WriteText(displayBuffer, (FrameWidth \ 2 - font.TextWidth(text) \ 2, FrameHeight + 2), text, Hue.White)
     End Sub
 

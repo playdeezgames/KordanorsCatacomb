@@ -6,4 +6,5 @@ Public Class WorldData
     Public Property Facing As Direction
     Public Property DungeonLocations As Integer(,)
     Public Property Messages As New List(Of MessageData)
+    Public Property Items As New List(Of ItemData)
 End Class

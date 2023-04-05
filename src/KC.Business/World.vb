@@ -61,11 +61,37 @@
     Public Sub Generate() Implements IWorld.Generate
         Clear()
         GenerateMaze()
-        PopulateMaze()
+        PopulateMazeItems()
+        PopulateMazeCreatures()
         GeneratePlayerCharacter()
     End Sub
 
-    Private Sub PopulateMaze()
+    Private Sub PopulateMazeItems()
+        For Each itemType In AllItemTypes
+            Dim descriptor = itemType.ToDescriptor
+            Dim spawnCount = descriptor.SpawnCount
+            While spawnCount > 0
+                GenerateItem(itemType)
+                spawnCount -= 1
+            End While
+        Next
+    End Sub
+
+    Private Function GenerateItem(itemType As ItemType) As IItem
+        Dim descriptor = itemType.ToDescriptor
+        Dim location As ILocation
+        Dim found As Boolean
+        Do
+            Dim column = RNG.FromRange(0, MazeColumns - 1)
+            Dim row = RNG.FromRange(0, MazeRows - 1)
+            location = New Location(_data, _data.DungeonLocations(column, row))
+            Dim exitcount = location.ExitCount
+            found = exitcount >= descriptor.MinimumExitCount AndAlso exitcount <= descriptor.MaximumExitCount
+        Loop Until found
+        Return Item.Create(_data, itemType, location)
+    End Function
+
+    Private Sub PopulateMazeCreatures()
         For Each characterType In AllCharacterTypes
             Dim descriptor = characterType.ToDescriptor
             Dim spawnCount = descriptor.SpawnCount
@@ -75,9 +101,6 @@
             End While
         Next
     End Sub
-
-
-
     Private Sub GeneratePlayerCharacter()
         PlayerCharacter = GenerateCharacter(CharacterType.Larrikin)
         RandomizeFacing()

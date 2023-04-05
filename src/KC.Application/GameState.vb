@@ -10,4 +10,5 @@
     Combat
     Message
     GameOver
+    ModeSelect
 End Enum
