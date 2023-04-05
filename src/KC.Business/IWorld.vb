@@ -12,4 +12,5 @@ Public Interface IWorld
     ReadOnly Property LeftDirection As Direction
     ReadOnly Property HasMessages As Boolean
     ReadOnly Property NextMessage As IMessage
+    Sub AddMessage(ParamArray lines() As (Mood, String))
 End Interface

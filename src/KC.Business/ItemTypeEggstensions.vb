@@ -10,7 +10,7 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.Köttbulle,
-                New ItemTypeDescriptor(spawnCount:=100)
+                New ItemTypeDescriptor(spawnCount:=0)
             }
         }
     <Extension>

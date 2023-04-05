@@ -60,6 +60,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasItems As Boolean Implements ILocation.HasItems
+        Get
+            Return LocationData.Items.Any
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, locationId As Integer)
         _data = data
         _locationId = locationId

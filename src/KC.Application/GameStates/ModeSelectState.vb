@@ -26,11 +26,24 @@
                 Select Case _menuItems(_currentMenuItem)
                     Case NavigationText
                         SetState(GameState.Neutral)
+                    Case GroundText
+                        HandleGround()
                 End Select
             Case Command.Red
                 _currentMenuItem = 0
                 SetState(GameState.Neutral)
         End Select
+    End Sub
+
+    Private Sub HandleGround()
+        If Not World.PlayerCharacter.Location.HasItems Then
+            _currentMenuItem = 0
+            World.AddMessage(
+                (Mood.Gray, "There are no items"),
+                (Mood.Gray, "on the ground!"))
+            SetState(GameState.Neutral)
+            Return
+        End If
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

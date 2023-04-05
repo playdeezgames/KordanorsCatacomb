@@ -232,4 +232,11 @@
         Dim border = location.GetBorder(Facing)
         Return border.BorderType = BorderType.Door
     End Function
+
+    Public Sub AddMessage(ParamArray lines() As (Mood, String)) Implements IWorld.AddMessage
+        Dim msg = Message.Create(Me._data)
+        For Each line In lines
+            msg.AddLine(line.Item1, line.Item2)
+        Next
+    End Sub
 End Class
