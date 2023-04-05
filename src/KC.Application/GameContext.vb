@@ -11,6 +11,9 @@ Public Module GameContext
             Return New World(_worldData)
         End Get
     End Property
+
+    Public Property InventoryIndex As Integer
+
     Friend Sub Embark()
         _worldData = New WorldData
         World.Generate()

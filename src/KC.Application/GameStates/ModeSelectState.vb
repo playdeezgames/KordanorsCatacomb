@@ -44,6 +44,8 @@
             SetState(GameState.Neutral)
             Return
         End If
+        GameContext.InventoryIndex = 0
+        SetState(GameState.Ground)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

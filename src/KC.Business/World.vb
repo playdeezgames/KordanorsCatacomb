@@ -202,9 +202,7 @@
     End Function
 
     Private Function CreateLocation() As ILocation
-        Dim locationId = _data.Locations.Count
-        _data.Locations.Add(New LocationData)
-        Return New Location(_data, locationId)
+        Return Location.Create(_data)
     End Function
 
     Public Sub DismissMessage() Implements IWorld.DismissMessage

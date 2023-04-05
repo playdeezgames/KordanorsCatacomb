@@ -6,11 +6,11 @@ Friend Module ItemTypeEggstensions
         {
             {
                 ItemType.Knorva,
-                New ItemTypeDescriptor
+                New ItemTypeDescriptor("Knorva")
             },
             {
                 ItemType.Köttbulle,
-                New ItemTypeDescriptor(spawnCount:=0)
+                New ItemTypeDescriptor("Koetbulle", spawnCount:=100)
             }
         }
     <Extension>

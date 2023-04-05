@@ -11,4 +11,5 @@
     Message
     GameOver
     ModeSelect
+    Ground
 End Enum

@@ -94,4 +94,10 @@
         End If
         Return Nothing
     End Function
+
+    Friend Shared Function Create(data As WorldData) As ILocation
+        Dim locationId = data.Locations.Count
+        data.Locations.Add(New LocationData)
+        Return New Location(data, locationId)
+    End Function
 End Class

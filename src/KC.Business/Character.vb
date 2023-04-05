@@ -183,4 +183,13 @@
             Return CharacterType.ToDescriptor.IsEnemy
         End Get
     End Property
+
+    Public ReadOnly Property Inventory As ILocation Implements ICharacter.Inventory
+        Get
+            If Not CharacterData.Inventory.HasValue Then
+                CharacterData.Inventory = Business.Location.Create(_data).Id
+            End If
+            Return New Location(_data, CharacterData.inventory.value)
+        End Get
+    End Property
 End Class

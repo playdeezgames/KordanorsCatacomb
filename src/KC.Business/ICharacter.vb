@@ -11,4 +11,5 @@
     ReadOnly Property IsEnemy As Boolean
     ReadOnly Property IsDead As Boolean
     ReadOnly Property Name As String
+    ReadOnly Property Inventory As ILocation
 End Interface

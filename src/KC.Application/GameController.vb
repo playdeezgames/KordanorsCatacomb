@@ -14,6 +14,7 @@ Public Class GameController
         SetState(GameState.Message, New MessageState(Me, AddressOf SetCurrentState))
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState))
         SetState(GameState.ModeSelect, New ModeSelectState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Ground, New GroundState(Me, AddressOf SetCurrentState))
         SetState(GameState.Combat, New CombatState(Me, AddressOf SetCurrentState))
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
