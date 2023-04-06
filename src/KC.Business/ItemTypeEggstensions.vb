@@ -13,7 +13,7 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.Köttbulle,
-                New ItemTypeDescriptor("Koetbulle", AddressOf EatKoetbulle, spawnCount:=100, isUsable:=True)
+                New ItemTypeDescriptor("Koettbulle", AddressOf EatKoetbulle, spawnCount:=100, isUsable:=True)
             }
         }
 
