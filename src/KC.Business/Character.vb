@@ -154,8 +154,9 @@
             msg.AddLine(Mood.Gray, "You cannot use that.")
             Return
         End If
-        item.OnUse(Me)
-        item.Location = Nothing
+        If item.OnUse(Me) Then
+            item.Location = Nothing
+        End If
     End Sub
 
     Public ReadOnly Property HP As Integer Implements ICharacter.HP

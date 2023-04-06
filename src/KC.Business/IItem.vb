@@ -4,6 +4,6 @@
     ReadOnly Property ItemType As ItemType
     ReadOnly Property Name As String
     ReadOnly Property IsUsable As Boolean
-    Sub OnUse(character As ICharacter)
+    Function OnUse(character As ICharacter) As Boolean
     ReadOnly Property CanTake As Boolean
 End Interface

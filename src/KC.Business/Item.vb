@@ -76,7 +76,7 @@
         }
     End Function
 
-    Public Sub OnUse(character As ICharacter) Implements IItem.OnUse
-        ItemType.ToDescriptor.OnUse.Invoke(_data, character)
-    End Sub
+    Public Function OnUse(character As ICharacter) As Boolean Implements IItem.OnUse
+        Return ItemType.ToDescriptor.OnUse(_data, character)
+    End Function
 End Class

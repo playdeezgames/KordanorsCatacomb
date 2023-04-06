@@ -1,9 +1,9 @@
 ﻿Imports System.Runtime.CompilerServices
 
 Friend Module ItemTypeEggstensions
-    Private Sub DoNothing(data As WorldData, character As ICharacter)
-        'do nothing, literally
-    End Sub
+    Private Function DoNothing(data As WorldData, character As ICharacter) As Boolean
+        Return False
+    End Function
     Private ReadOnly table As IReadOnlyDictionary(Of ItemType, ItemTypeDescriptor) =
         New Dictionary(Of ItemType, ItemTypeDescriptor) From
         {
@@ -25,7 +25,7 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.Tea,
-                New ItemTypeDescriptor("Tea", AddressOf UseTea, spawnCount:=1, isUsable:=True)
+                New ItemTypeDescriptor("Tea", AddressOf DoNothing, spawnCount:=1)
             },
             {
                 ItemType.Match,
@@ -57,24 +57,33 @@ Friend Module ItemTypeEggstensions
             }
         }
 
-    Private Sub UseMatch(arg1 As WorldData, arg2 As ICharacter)
-        Throw New NotImplementedException()
-    End Sub
+    Private Function UseMatch(data As WorldData, character As ICharacter) As Boolean
+        Return False
+    End Function
 
-    Private Sub UseTea(data As WorldData, character As ICharacter)
-    End Sub
+    Private Function UseWetSponge(data As WorldData, character As ICharacter) As Boolean
+        Return False
+    End Function
 
-    Private Sub UseWetSponge(data As WorldData, character As ICharacter)
-    End Sub
+    Private Function UseSponge(data As WorldData, character As ICharacter) As Boolean
+        Dim world = New World(data)
+        If Not character.Location.ItemTypes.Contains(ItemType.DewPuddle) Then
+            world.AddMessage((Mood.Gray, "You cannot use that now."))
+            Return False
+        End If
+        Dim puddle = character.Location.Items.First(Function(x) x.ItemType = ItemType.DewPuddle)
+        puddle.Location = Nothing
+        Item.Create(data, ItemType.WetSponge, character.Inventory)
+        World.AddMessage((Mood.Gray, "You sop up the dew."))
+        Return True
+    End Function
 
-    Private Sub UseSponge(data As WorldData, character As ICharacter)
-    End Sub
-
-    Private Sub EatKoetbulle(data As WorldData, character As ICharacter)
+    Private Function EatKoetbulle(data As WorldData, character As ICharacter) As Boolean
         character.AddWounds(-1)
         Dim msg = Message.Create(data)
         msg.AddLine(Mood.Gray, "You eat it.")
-    End Sub
+        Return True
+    End Function
 
     <Extension>
     Function ToDescriptor(itemType As ItemType) As ItemTypeDescriptor

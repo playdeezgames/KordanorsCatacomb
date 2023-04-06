@@ -2,7 +2,7 @@
     ReadOnly Property SpawnCount As Integer
     Sub New(
            name As String,
-           onUse As Action(Of WorldData, ICharacter),
+           onUse As Func(Of WorldData, ICharacter, Boolean),
            Optional spawnCount As Integer = 0,
            Optional minimumExitCount As Integer = 0,
            Optional maximumExitCount As Integer = 4,
@@ -17,7 +17,7 @@
         Me.CanTake = canTake
     End Sub
 
-    ReadOnly Property OnUse As Action(Of WorldData, ICharacter)
+    ReadOnly Property OnUse As Func(Of WorldData, ICharacter, Boolean)
     ReadOnly Property IsUsable As Boolean
     ReadOnly Property MinimumExitCount As Integer
     ReadOnly Property MaximumExitCount As Integer
