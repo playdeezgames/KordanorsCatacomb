@@ -14,8 +14,37 @@ Friend Module ItemTypeEggstensions
             {
                 ItemType.Köttbulle,
                 New ItemTypeDescriptor("Koettbulle", AddressOf EatKoetbulle, spawnCount:=100, isUsable:=True)
+            },
+            {
+                ItemType.Sponge,
+                New ItemTypeDescriptor("Sponge", AddressOf UseSponge, spawnCount:=1, isUsable:=True)
+            },
+            {
+                ItemType.WetSponge,
+                New ItemTypeDescriptor("Wet Sponge", AddressOf UseWetSponge, spawnCount:=1, isUsable:=True)
+            },
+            {
+                ItemType.Tee,
+                New ItemTypeDescriptor("Tee", AddressOf UseTee, spawnCount:=1, isUsable:=True)
+            },
+            {
+                ItemType.Match,
+                New ItemTypeDescriptor("Match", AddressOf UseMatch, spawnCount:=1, isUsable:=True)
             }
         }
+
+    Private Sub UseMatch(arg1 As WorldData, arg2 As ICharacter)
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub UseTee(data As WorldData, character As ICharacter)
+    End Sub
+
+    Private Sub UseWetSponge(data As WorldData, character As ICharacter)
+    End Sub
+
+    Private Sub UseSponge(data As WorldData, character As ICharacter)
+    End Sub
 
     Private Sub EatKoetbulle(data As WorldData, character As ICharacter)
         character.AddWounds(-1)
