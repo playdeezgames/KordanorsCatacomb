@@ -13,4 +13,5 @@
     ModeSelect
     Ground
     CombatInventory
+    Inventory
 End Enum

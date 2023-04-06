@@ -28,11 +28,25 @@
                         SetState(GameState.Neutral)
                     Case GroundText
                         HandleGround()
+                    Case InventoryText
+                        HandleInventory()
                 End Select
             Case Command.Red
                 _currentMenuItem = 0
                 SetState(GameState.Neutral)
         End Select
+    End Sub
+
+    Private Sub HandleInventory()
+        If Not World.PlayerCharacter.Inventory.HasItems Then
+            _currentMenuItem = 0
+            World.AddMessage(
+                (Mood.Gray, "You have no items."))
+            SetState(GameState.Neutral)
+            Return
+        End If
+        GameContext.InventoryIndex = 0
+        SetState(GameState.Inventory)
     End Sub
 
     Private Sub HandleGround()
