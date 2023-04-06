@@ -21,6 +21,11 @@
 
     Private Sub TakeItem()
         Dim item = World.PlayerCharacter.Location.Items.ToList()(InventoryIndex)
+        If Not item.CanTake Then
+            World.AddMessage((Mood.Gray, "You cannot take it."))
+            SetState(GameState.Neutral)
+            Return
+        End If
         item.Location = World.PlayerCharacter.Inventory
         If Not World.PlayerCharacter.Location.HasItems Then
             SetState(GameState.ModeSelect)

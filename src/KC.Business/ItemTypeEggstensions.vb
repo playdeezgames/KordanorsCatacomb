@@ -17,19 +17,43 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.Sponge,
-                New ItemTypeDescriptor("Sponge", AddressOf UseSponge, spawnCount:=1, isUsable:=True)
+                New ItemTypeDescriptor("Sponge", AddressOf UseSponge, spawnCount:=100, isUsable:=True)
             },
             {
                 ItemType.WetSponge,
-                New ItemTypeDescriptor("Wet Sponge", AddressOf UseWetSponge, spawnCount:=1, isUsable:=True)
+                New ItemTypeDescriptor("Wet Sponge", AddressOf UseWetSponge, isUsable:=True)
             },
             {
-                ItemType.Tee,
-                New ItemTypeDescriptor("Tee", AddressOf UseTee, spawnCount:=1, isUsable:=True)
+                ItemType.Tea,
+                New ItemTypeDescriptor("Tea", AddressOf UseTea, spawnCount:=1, isUsable:=True)
             },
             {
                 ItemType.Match,
                 New ItemTypeDescriptor("Match", AddressOf UseMatch, spawnCount:=1, isUsable:=True)
+            },
+            {
+                ItemType.BurntMatch,
+                New ItemTypeDescriptor("Burnt Match", AddressOf DoNothing)
+            },
+            {
+                ItemType.LitTea,
+                New ItemTypeDescriptor("Lit Tea", AddressOf DoNothing)
+            },
+            {
+                ItemType.DewALitTea,
+                New ItemTypeDescriptor("Dew a lit tea", AddressOf DoNothing)
+            },
+            {
+                ItemType.DewPuddle,
+                New ItemTypeDescriptor("Dew Puddle", AddressOf DoNothing, spawnCount:=100, canTake:=False)
+            },
+            {
+                ItemType.Vörda,
+                New ItemTypeDescriptor("Voerda", AddressOf DoNothing)
+            },
+            {
+                ItemType.SyltLingon,
+                New ItemTypeDescriptor("Sylt Lingon", AddressOf DoNothing)
             }
         }
 
@@ -37,7 +61,7 @@ Friend Module ItemTypeEggstensions
         Throw New NotImplementedException()
     End Sub
 
-    Private Sub UseTee(data As WorldData, character As ICharacter)
+    Private Sub UseTea(data As WorldData, character As ICharacter)
     End Sub
 
     Private Sub UseWetSponge(data As WorldData, character As ICharacter)

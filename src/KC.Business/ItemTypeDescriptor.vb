@@ -6,13 +6,15 @@
            Optional spawnCount As Integer = 0,
            Optional minimumExitCount As Integer = 0,
            Optional maximumExitCount As Integer = 4,
-           Optional isUsable As Boolean = False)
+           Optional isUsable As Boolean = False,
+           Optional canTake As Boolean = True)
         Me.Name = name
         Me.SpawnCount = spawnCount
         Me.MinimumExitCount = minimumExitCount
         Me.MaximumExitCount = maximumExitCount
         Me.IsUsable = isUsable
         Me.OnUse = onUse
+        Me.CanTake = canTake
     End Sub
 
     ReadOnly Property OnUse As Action(Of WorldData, ICharacter)
@@ -20,4 +22,5 @@
     ReadOnly Property MinimumExitCount As Integer
     ReadOnly Property MaximumExitCount As Integer
     ReadOnly Property Name As String
+    ReadOnly Property CanTake As Boolean
 End Class

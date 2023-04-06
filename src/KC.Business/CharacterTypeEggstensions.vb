@@ -32,7 +32,7 @@ Friend Module CharacterTypeEggstensions
                         {StatisticType.Defend, 1},
                         {StatisticType.MaximumDefend, 1}
                     },
-                    spawnCount:=120)
+                    spawnCount:=0)
             }
         }
     Friend ReadOnly Property AllCharacterTypes As IEnumerable(Of CharacterType)

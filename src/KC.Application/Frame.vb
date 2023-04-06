@@ -57,8 +57,72 @@ Friend Module Frame
                 Sub(d)
 
                 End Sub
+            },
+            {
+                ItemType.Sponge,
+                Sub(d)
+                    d.MoveTo(FrameWidth \ 4, FrameHeight * 3 \ 4).Color(Hue.Yellow).Right(3).Down(5).Left(3).Up(5)
+                End Sub
+            },
+            {
+                ItemType.WetSponge,
+                Sub(d)
+                    d.MoveTo(FrameWidth \ 4, FrameHeight * 3 \ 4).Color(Hue.Yellow).Right(3).Down(5).Left(3).Up(5)
+                End Sub
+            },
+            {
+                ItemType.Tea,
+                Sub(d)
+                    DrawBaseTea(d)
+                End Sub
+            },
+            {
+                ItemType.LitTea,
+                Sub(d)
+                    DrawBaseTea(d)
+                End Sub
+            },
+            {
+                ItemType.DewALitTea,
+                Sub(d)
+                    DrawBaseTea(d)
+                End Sub
+            },
+            {
+                ItemType.Match,
+                Sub(d)
+                    d.MoveTo(FrameWidth \ 4, FrameHeight * 7 \ 8).Color(Hue.Red).DownRight(1).Color(Hue.Brown).DownRight(4)
+                End Sub
+            },
+            {
+                ItemType.BurntMatch,
+                Sub(d)
+                    d.MoveTo(FrameWidth \ 4, FrameHeight * 7 \ 8).Color(Hue.DarkGray).DownRight(2).Color(Hue.Brown).DownRight(3)
+                End Sub
+            },
+            {
+                ItemType.DewPuddle,
+                Sub(d)
+                    d.MoveTo(FrameWidth * 3 \ 4, FrameHeight * 7 \ 8).Color(Hue.Blue).Right(2).DownRight(1).Right(1).DownRight(1).Right(2).DownRight(1).Down(1).DownLeft(1).Left(1).DownLeft(1).Left(4).UpLeft(3).Up(1).UpRight(2)
+                End Sub
+            },
+            {
+                ItemType.SyltLingon,
+                Sub(d)
+                    Throw New NotImplementedException
+                End Sub
+            },
+            {
+                ItemType.Vörda,
+                Sub(d)
+                    Throw New NotImplementedException
+                End Sub
             }
         }
+
+    Private Sub DrawBaseTea(d As Drawer(Of Hue))
+        d.MoveTo(FrameWidth \ 4, FrameHeight * 7 \ 8).Color(Hue.White).Left(2).Down(3).DownRight(1).Right(3).UpRight(1).Right(1).UpRight(1).UpLeft(1).Left(1).Down(1).Up(2).Left(3)
+    End Sub
 
     Private Sub DrawItems(displayBuffer As IPixelSink(Of Hue), location As ILocation)
         Dim itemTypes As IEnumerable(Of ItemType) = location.ItemTypes

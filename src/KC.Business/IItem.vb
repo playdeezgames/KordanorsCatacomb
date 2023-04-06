@@ -5,4 +5,5 @@
     ReadOnly Property Name As String
     ReadOnly Property IsUsable As Boolean
     Sub OnUse(character As ICharacter)
+    ReadOnly Property CanTake As Boolean
 End Interface

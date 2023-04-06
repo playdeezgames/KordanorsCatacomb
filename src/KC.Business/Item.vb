@@ -58,6 +58,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property CanTake As Boolean Implements IItem.CanTake
+        Get
+            Return ItemType.ToDescriptor.CanTake
+        End Get
+    End Property
+
     Friend Shared Function Create(data As WorldData, itemType As ItemType, location As ILocation) As IItem
         Dim itemId = data.Items.Count
         Dim itemData = New ItemData With
