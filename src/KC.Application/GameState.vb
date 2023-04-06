@@ -14,4 +14,5 @@
     Ground
     CombatInventory
     Inventory
+    InventoryDetail
 End Enum

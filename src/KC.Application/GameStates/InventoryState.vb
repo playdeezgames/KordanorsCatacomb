@@ -20,6 +20,7 @@
     End Sub
 
     Private Sub ViewItem()
+        SetState(GameState.InventoryDetail)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

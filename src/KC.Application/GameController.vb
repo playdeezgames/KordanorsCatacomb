@@ -16,6 +16,7 @@ Public Class GameController
         SetState(GameState.ModeSelect, New ModeSelectState(Me, AddressOf SetCurrentState))
         SetState(GameState.Ground, New GroundState(Me, AddressOf SetCurrentState))
         SetState(GameState.Inventory, New InventoryState(Me, AddressOf SetCurrentState))
+        SetState(GameState.InventoryDetail, New InventoryDetailState(Me, AddressOf SetCurrentState))
         SetState(GameState.CombatInventory, New CombatInventoryState(Me, AddressOf SetCurrentState))
         SetState(GameState.Combat, New CombatState(Me, AddressOf SetCurrentState))
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))
