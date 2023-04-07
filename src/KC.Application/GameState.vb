@@ -15,4 +15,5 @@
     CombatInventory
     Inventory
     InventoryDetail
+    Win
 End Enum

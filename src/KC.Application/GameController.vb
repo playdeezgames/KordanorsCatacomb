@@ -11,6 +11,7 @@ Public Class GameController
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState))
         SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState))
         SetState(GameState.GameOver, New GameOverState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Win, New WinState(Me, AddressOf SetCurrentState))
         SetState(GameState.Message, New MessageState(Me, AddressOf SetCurrentState))
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState))
         SetState(GameState.ModeSelect, New ModeSelectState(Me, AddressOf SetCurrentState))

@@ -18,6 +18,9 @@
         ElseIf World.PlayerCharacter.IsDead Then
             SetState(GameState.GameOver)
             Return
+        ElseIf World.PlayerCharacter.Inventory.ItemTypes.Contains(ItemType.DewALitTea) Then
+            SetState(GameState.Win)
+            Return
         ElseIf World.PlayerCharacter.Location.HasEnemies Then
             SetState(GameState.Combat)
             Return
