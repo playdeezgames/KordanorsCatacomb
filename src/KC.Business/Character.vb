@@ -165,10 +165,13 @@
         End Get
     End Property
 
-    Public ReadOnly Property MaximumHP As Integer Implements ICharacter.MaximumHP
+    Public Property MaximumHP As Integer Implements ICharacter.MaximumHP
         Get
             Return GetStatistic(StatisticType.MaximumHP)
         End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.MaximumHP, value)
+        End Set
     End Property
 
     Public ReadOnly Property CharacterType As CharacterType Implements ICharacter.CharacterType

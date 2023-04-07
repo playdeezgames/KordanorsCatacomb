@@ -53,13 +53,20 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.SyltLingon,
-                New ItemTypeDescriptor("Sylt Lingon", AddressOf DoNothing, spawnCount:=100)
+                New ItemTypeDescriptor("Sylt Lingon", AddressOf UseSyltLingon, spawnCount:=5, isUsable:=True)
             },
             {
                 ItemType.Compass,
-                New ItemTypeDescriptor("Compass", AddressOf DoNothing, spawnCount:=10)
+                New ItemTypeDescriptor("Compass", AddressOf DoNothing, spawnCount:=5)
             }
         }
+
+    Private Function UseSyltLingon(data As WorldData, character As ICharacter) As Boolean
+        Dim world = New World(data)
+        character.MaximumHP += 1
+        world.AddMessage((Mood.Gray, "It is delicious!"))
+        Return True
+    End Function
 
     Private Function UseMatch(data As WorldData, character As ICharacter) As Boolean
         Dim world = New World(data)
