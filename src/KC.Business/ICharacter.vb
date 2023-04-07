@@ -13,4 +13,6 @@
     ReadOnly Property IsDead As Boolean
     ReadOnly Property Name As String
     ReadOnly Property Inventory As ILocation
+    ReadOnly Property MaximumAttack As Integer
+    ReadOnly Property MaximumDefend As Integer
 End Interface

@@ -203,4 +203,16 @@
             Return New Location(_data, CharacterData.inventory.value)
         End Get
     End Property
+
+    Public ReadOnly Property MaximumAttack As Integer Implements ICharacter.MaximumAttack
+        Get
+            Return GetStatistic(StatisticType.MaximumAttack)
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumDefend As Integer Implements ICharacter.MaximumDefend
+        Get
+            Return GetStatistic(StatisticType.MaximumDefend)
+        End Get
+    End Property
 End Class
