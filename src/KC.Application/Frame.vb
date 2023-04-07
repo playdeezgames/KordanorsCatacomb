@@ -91,13 +91,13 @@ Friend Module Frame
             {
                 ItemType.Match,
                 Sub(d)
-                    d.MoveTo(FrameWidth \ 4, FrameHeight * 7 \ 8).Color(Hue.Red).DownRight(1).Color(Hue.Brown).DownRight(4)
+                    d.MoveTo(FrameWidth \ 2, FrameHeight * 7 \ 8).Color(Hue.Red).DownRight(1).Color(Hue.Brown).DownRight(4)
                 End Sub
             },
             {
                 ItemType.BurntMatch,
                 Sub(d)
-                    d.MoveTo(FrameWidth \ 4, FrameHeight * 7 \ 8).Color(Hue.DarkGray).DownRight(2).Color(Hue.Brown).DownRight(3)
+                    d.MoveTo(FrameWidth \ 2, FrameHeight * 7 \ 8).Color(Hue.DarkGray).DownRight(2).Color(Hue.Brown).DownRight(3)
                 End Sub
             },
             {
@@ -121,7 +121,7 @@ Friend Module Frame
         }
 
     Private Sub DrawBaseTea(d As Drawer(Of Hue))
-        d.MoveTo(FrameWidth \ 4, FrameHeight * 7 \ 8).Color(Hue.White).Left(2).Down(3).DownRight(1).Right(3).UpRight(1).Right(1).UpRight(1).UpLeft(1).Left(1).Down(1).Up(2).Left(3)
+        d.MoveTo(FrameWidth \ 2, FrameHeight * 3 \ 4).Color(Hue.White).Left(2).Down(3).DownRight(1).Right(3).UpRight(1).Right(1).UpRight(1).UpLeft(1).Left(1).Down(1).Up(2).Left(3)
     End Sub
 
     Private Sub DrawItems(displayBuffer As IPixelSink(Of Hue), location As ILocation)

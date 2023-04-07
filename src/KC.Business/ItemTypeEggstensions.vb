@@ -25,11 +25,11 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.Tea,
-                New ItemTypeDescriptor("Tea", AddressOf DoNothing, spawnCount:=1)
+                New ItemTypeDescriptor("Tea", AddressOf DoNothing, spawnCount:=100)
             },
             {
                 ItemType.Match,
-                New ItemTypeDescriptor("Match", AddressOf UseMatch, spawnCount:=1, isUsable:=True)
+                New ItemTypeDescriptor("Match", AddressOf UseMatch, spawnCount:=100, isUsable:=True)
             },
             {
                 ItemType.BurntMatch,
@@ -58,11 +58,31 @@ Friend Module ItemTypeEggstensions
         }
 
     Private Function UseMatch(data As WorldData, character As ICharacter) As Boolean
-        Return False
+        Dim world = New World(data)
+        If Not character.Inventory.ItemTypes.Contains(ItemType.Tea) Then
+            world.AddMessage((Mood.Gray, "You cannot use that now."))
+            Return False
+        End If
+        Dim teaItem = character.Inventory.Items.First(Function(x) x.ItemType = ItemType.Tea)
+        teaItem.Location = Nothing
+        Item.Create(data, ItemType.LitTea, character.Inventory)
+        Item.Create(data, ItemType.BurntMatch, character.Inventory)
+        world.AddMessage((Mood.Gray, "You use the match on the  "), (Mood.Gray, "tea. It is now a Lit Tee."))
+        Return True
     End Function
 
     Private Function UseWetSponge(data As WorldData, character As ICharacter) As Boolean
-        Return False
+        Dim world = New World(data)
+        If Not character.Inventory.ItemTypes.Contains(ItemType.LitTea) Then
+            world.AddMessage((Mood.Gray, "You cannot use that now."))
+            Return False
+        End If
+        Dim teaItem = character.Inventory.Items.First(Function(x) x.ItemType = ItemType.LitTea)
+        teaItem.Location = Nothing
+        Item.Create(data, ItemType.DewALitTea, character.Inventory)
+        Item.Create(data, ItemType.Sponge, character.Inventory)
+        world.AddMessage((Mood.Gray, "You squeeze the dew onto  "), (Mood.Gray, "the Lit Tea. You have made"), (Mood.Gray, "Dew a Lit Tea!"))
+        Return True
     End Function
 
     Private Function UseSponge(data As WorldData, character As ICharacter) As Boolean
