@@ -108,7 +108,12 @@ Friend Module ItemTypeEggstensions
         teaItem.Location = Nothing
         Item.Create(data, ItemType.DewALitTea, character.Inventory)
         Item.Create(data, ItemType.Sponge, character.Inventory)
-        world.AddMessage((Mood.Gray, "You squeeze the dew onto  "), (Mood.Gray, "the Lit Tea. You have made"), (Mood.Gray, "Dew a Lit Tea!"))
+        Dim msg = Message.Create(data)
+        msg.AddLine(Mood.Gray, "You squeeze the dew onto  ")
+        msg.AddLine(Mood.Gray, "the Lit Tea. You have made")
+        msg.AddLine(Mood.Gray, "Dew a Lit Tea!")
+        msg.Cue = SoundCue.Win
+
         Return True
     End Function
 

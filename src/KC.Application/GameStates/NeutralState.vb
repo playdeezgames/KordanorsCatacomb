@@ -24,6 +24,8 @@
                     PlaySfx(Sfx.PlayerHit)
                 Case SoundCue.Miss
                     PlaySfx(Sfx.Miss)
+                Case SoundCue.Win
+                    PlaySfx(Sfx.LevelUp)
             End Select
             SetState(GameState.Message)
             Return

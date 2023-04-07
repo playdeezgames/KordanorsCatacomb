@@ -5,4 +5,5 @@
     EnemyHit
     PlayerDeath
     EnemyDeath
+    Win
 End Enum
