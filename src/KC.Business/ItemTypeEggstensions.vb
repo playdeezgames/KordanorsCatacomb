@@ -17,7 +17,7 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.Sponge,
-                New ItemTypeDescriptor("Sponge", AddressOf UseSponge, spawnCount:=100, isUsable:=True)
+                New ItemTypeDescriptor("Sponge", AddressOf UseSponge, spawnCount:=1, isUsable:=True)
             },
             {
                 ItemType.WetSponge,
@@ -25,11 +25,11 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.Tea,
-                New ItemTypeDescriptor("Tea", AddressOf DoNothing, spawnCount:=100)
+                New ItemTypeDescriptor("Tea", AddressOf DoNothing, spawnCount:=1)
             },
             {
                 ItemType.Match,
-                New ItemTypeDescriptor("Match", AddressOf UseMatch, spawnCount:=100, isUsable:=True)
+                New ItemTypeDescriptor("Match", AddressOf UseMatch, spawnCount:=1, isUsable:=True)
             },
             {
                 ItemType.BurntMatch,
@@ -45,7 +45,7 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.DewPuddle,
-                New ItemTypeDescriptor("Dew Puddle", AddressOf DoNothing, spawnCount:=100, canTake:=False)
+                New ItemTypeDescriptor("Dew Puddle", AddressOf DoNothing, spawnCount:=1, canTake:=False)
             },
             {
                 ItemType.Vörda,
