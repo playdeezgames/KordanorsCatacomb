@@ -53,7 +53,7 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.SyltLingon,
-                New ItemTypeDescriptor("Sylt Lingon", AddressOf DoNothing)
+                New ItemTypeDescriptor("Sylt Lingon", AddressOf DoNothing, spawnCount:=100)
             },
             {
                 ItemType.Compass,

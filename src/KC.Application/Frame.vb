@@ -109,7 +109,7 @@ Friend Module Frame
             {
                 ItemType.SyltLingon,
                 Sub(d)
-                    Throw New NotImplementedException
+                    d.MoveTo(FrameWidth * 5 \ 8, FrameHeight * 3 \ 4).Color(Hue.Gray).Left(2).Right(5).DownLeft(1).Color(Hue.Red).Left(3).DownLeft(1).Right(5).Down(1).Left(5).Down(1).Right(5).Down(1).Left(5).Down(1).Right(6)
                 End Sub
             },
             {
