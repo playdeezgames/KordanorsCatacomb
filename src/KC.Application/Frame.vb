@@ -117,6 +117,12 @@ Friend Module Frame
                 Sub(d)
                     Throw New NotImplementedException
                 End Sub
+            },
+            {
+                ItemType.Compass,
+                Sub(d)
+                    d.MoveTo(FrameWidth * 5 \ 8, FrameHeight * 7 \ 8).Color(Hue.Gray).Right(2).Down(1).Right(1).Down(4).Left(1).Down(1).Left(4).Up(1).Left(1).Up(4).Right(1).Up(1).Right(2).Color(Hue.Red).Down(4)
+                End Sub
             }
         }
 
@@ -148,5 +154,9 @@ Friend Module Frame
         font.WriteText(displayBuffer, (0, 0), $"HP: {character.HP}/{character.MaximumHP}", Hue.Red)
         font.WriteText(displayBuffer, (0, 6), $"ATK: {character.MaximumAttack}", Hue.Green)
         font.WriteText(displayBuffer, (0, 12), $"DEF: {character.MaximumDefend}", Hue.Yellow)
+        If character.Inventory.ItemTypes.Contains(ItemType.Compass) Then
+            Dim text = World.Facing.ToString
+            font.WriteText(displayBuffer, (FrameWidth \ 2 - font.TextWidth(text) \ 2, 0), text, Hue.Magenta)
+        End If
     End Sub
 End Module

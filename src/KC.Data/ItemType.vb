@@ -11,4 +11,5 @@
     BurntMatch
     Vörda
     SyltLingon
+    Compass
 End Enum

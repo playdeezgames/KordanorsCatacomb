@@ -54,6 +54,10 @@ Friend Module ItemTypeEggstensions
             {
                 ItemType.SyltLingon,
                 New ItemTypeDescriptor("Sylt Lingon", AddressOf DoNothing)
+            },
+            {
+                ItemType.Compass,
+                New ItemTypeDescriptor("Compass", AddressOf DoNothing, spawnCount:=5)
             }
         }
 
