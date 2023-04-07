@@ -55,7 +55,12 @@ Friend Module Frame
             {
                 ItemType.Knorva,
                 Sub(d)
-
+                    d.
+                        MoveTo(FrameWidth * 3 \ 8, FrameHeight * 3 \ 4).
+                        Color(Hue.LightBlue).Left(2).Right(4).DownRight(1).Left(1).
+                        Color(Hue.Blue).Left(5).
+                        Color(Hue.LightBlue).Down(1).Right(6).Down(1).Left(6).DownLeft(1).Right(1).
+                        Color(Hue.Yellow).Right(1).Color(Hue.LightBlue).Right(5).Color(Hue.Yellow).Right(1).Color(Hue.LightBlue).DownRight(1).Left(3).Color(Hue.Yellow).Left(5).Color(Hue.LightBlue).Left(2).Down(1).Right(10).DownLeft(1).Left(8)
                 End Sub
             },
             {

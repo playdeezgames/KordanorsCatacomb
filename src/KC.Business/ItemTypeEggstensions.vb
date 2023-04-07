@@ -9,7 +9,7 @@ Friend Module ItemTypeEggstensions
         {
             {
                 ItemType.Knorva,
-                New ItemTypeDescriptor("Knorva", AddressOf DoNothing)
+                New ItemTypeDescriptor("Knorva", AddressOf DoNothing, spawnCount:=100)
             },
             {
                 ItemType.Köttbulle,
