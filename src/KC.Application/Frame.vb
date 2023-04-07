@@ -120,7 +120,9 @@ Friend Module Frame
             {
                 ItemType.Vörda,
                 Sub(d)
-                    Throw New NotImplementedException
+                    d.
+                        MoveTo(FrameWidth * 3 \ 8, FrameHeight * 7 \ 8).
+                        Color(Hue.DarkGray).Up(5).Down(2).Left(1).Down(6).Up(3).Left(1).Down(3).Left(1).Right(2).Down(1).Color(Hue.Brown).Down(2).Right(1).Up(3).Color(Hue.DarkGray).Up(4)
                 End Sub
             },
             {

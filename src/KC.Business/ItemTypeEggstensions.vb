@@ -9,7 +9,7 @@ Friend Module ItemTypeEggstensions
         {
             {
                 ItemType.Knorva,
-                New ItemTypeDescriptor("Knorva", AddressOf UseKnorva, spawnCount:=100, isUsable:=True)
+                New ItemTypeDescriptor("Knorva", AddressOf UseKnorva, spawnCount:=3, isUsable:=True)
             },
             {
                 ItemType.Köttbulle,
@@ -49,7 +49,7 @@ Friend Module ItemTypeEggstensions
             },
             {
                 ItemType.Vörda,
-                New ItemTypeDescriptor("Voerda", AddressOf DoNothing)
+                New ItemTypeDescriptor("Voerda", AddressOf UseVoerda, spawnCount:=4, isUsable:=True)
             },
             {
                 ItemType.SyltLingon,
@@ -60,6 +60,14 @@ Friend Module ItemTypeEggstensions
                 New ItemTypeDescriptor("Compass", AddressOf DoNothing, spawnCount:=5)
             }
         }
+
+    Private Function UseVoerda(data As WorldData, character As ICharacter) As Boolean
+        Dim world = New World(data)
+        character.MaximumAttack += 1
+        character.Attack += 3
+        world.AddMessage((Mood.Gray, "Sharp knife!"))
+        Return True
+    End Function
 
     Private Function UseKnorva(data As WorldData, character As ICharacter) As Boolean
         Dim world = New World(data)

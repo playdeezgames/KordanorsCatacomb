@@ -207,10 +207,13 @@
         End Get
     End Property
 
-    Public ReadOnly Property MaximumAttack As Integer Implements ICharacter.MaximumAttack
+    Public Property MaximumAttack As Integer Implements ICharacter.MaximumAttack
         Get
             Return GetStatistic(StatisticType.MaximumAttack)
         End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.MaximumAttack, value)
+        End Set
     End Property
 
     Public Property MaximumDefend As Integer Implements ICharacter.MaximumDefend
@@ -228,6 +231,15 @@
         End Get
         Set(value As Integer)
             SetStatistic(StatisticType.Defend, value)
+        End Set
+    End Property
+
+    Public Property Attack As Integer Implements ICharacter.Attack
+        Get
+            Return GetStatistic(StatisticType.Attack)
+        End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.Attack, value)
         End Set
     End Property
 End Class
