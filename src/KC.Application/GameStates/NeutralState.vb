@@ -13,6 +13,18 @@
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)
         If World.HasMessages Then
+            Select Case World.NextMessage.Cue
+                Case SoundCue.EnemyDeath
+                    PlaySfx(Sfx.EnemyDeath)
+                Case SoundCue.PlayerDeath
+                    PlaySfx(Sfx.PlayerDeath)
+                Case SoundCue.EnemyHit
+                    PlaySfx(Sfx.EnemyHit)
+                Case SoundCue.PlayerHit
+                    PlaySfx(Sfx.PlayerHit)
+                Case SoundCue.Miss
+                    PlaySfx(Sfx.Miss)
+            End Select
             SetState(GameState.Message)
             Return
         ElseIf World.PlayerCharacter.IsDead Then

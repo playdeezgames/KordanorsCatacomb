@@ -109,6 +109,9 @@
     End Sub
 
     Public Sub Fight(Optional index As Integer? = Nothing) Implements ICharacter.Fight
+        Dim missCue As SoundCue = SoundCue.Miss
+        Dim hitCue = If(index.HasValue, SoundCue.PlayerHit, SoundCue.EnemyHit)
+        Dim deathCue = If(index.HasValue, SoundCue.PlayerDeath, SoundCue.EnemyDeath)
         If IsDead Then
             Return
         End If
@@ -131,12 +134,15 @@
         msg.AddLine(Mood.Gray, $"{target.Name} rolls {defendRoll}")
         Dim damage = Math.Clamp(attackRoll - defendRoll, 0, attackRoll)
         If damage > 0 Then
+            msg.Cue = hitCue
             msg.AddLine(Mood.Gray, $"{target.Name} takes {damage} damage!")
             target.AddWounds(damage)
             If target.IsDead Then
+                msg.Cue = deathCue
                 msg.AddLine(Mood.Gray, $"{Name} kills {target.Name}!")
             End If
         Else
+            msg.Cue = missCue
             msg.AddLine(Mood.Gray, $"{Name} misses!")
         End If
         If Not CharacterType.ToDescriptor.IsEnemy Then

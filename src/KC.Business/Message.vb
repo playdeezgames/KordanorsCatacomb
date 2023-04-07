@@ -19,6 +19,15 @@
         End Get
     End Property
 
+    Public Property Cue As SoundCue Implements IMessage.Cue
+        Get
+            Return MessageData.Cue
+        End Get
+        Set(value As SoundCue)
+            MessageData.Cue = value
+        End Set
+    End Property
+
     Public Sub New(data As WorldData, messageId As Integer)
         Me._data = data
         Me._messageId = messageId
