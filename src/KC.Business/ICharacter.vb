@@ -14,5 +14,6 @@
     ReadOnly Property Name As String
     ReadOnly Property Inventory As ILocation
     ReadOnly Property MaximumAttack As Integer
-    ReadOnly Property MaximumDefend As Integer
+    Property MaximumDefend As Integer
+    Property Defend As Integer
 End Interface

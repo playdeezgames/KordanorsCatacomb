@@ -9,7 +9,7 @@ Friend Module ItemTypeEggstensions
         {
             {
                 ItemType.Knorva,
-                New ItemTypeDescriptor("Knorva", AddressOf DoNothing, spawnCount:=100)
+                New ItemTypeDescriptor("Knorva", AddressOf UseKnorva, spawnCount:=100, isUsable:=True)
             },
             {
                 ItemType.Köttbulle,
@@ -60,6 +60,14 @@ Friend Module ItemTypeEggstensions
                 New ItemTypeDescriptor("Compass", AddressOf DoNothing, spawnCount:=5)
             }
         }
+
+    Private Function UseKnorva(data As WorldData, character As ICharacter) As Boolean
+        Dim world = New World(data)
+        character.MaximumDefend += 1
+        character.Defend += 2
+        world.AddMessage((Mood.Gray, "Best hat ever!"))
+        Return True
+    End Function
 
     Private Function UseSyltLingon(data As WorldData, character As ICharacter) As Boolean
         Dim world = New World(data)

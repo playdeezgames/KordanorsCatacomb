@@ -87,7 +87,7 @@
         Dim maximum = GetStatistic(StatisticType.MaximumDefend)
         Dim roll = 0
         While dice > 0 AndAlso roll < maximum
-            roll = RNG.RollDice("1d6/6")
+            roll += RNG.RollDice("1d6/6")
             dice -= 1
         End While
         Return roll
@@ -98,7 +98,7 @@
         Dim maximum = GetStatistic(StatisticType.MaximumAttack)
         Dim roll = 0
         While dice > 0 AndAlso roll < maximum
-            roll = RNG.RollDice("1d6/6")
+            roll += RNG.RollDice("1d6/6")
             dice -= 1
         End While
         Return roll
@@ -213,9 +213,21 @@
         End Get
     End Property
 
-    Public ReadOnly Property MaximumDefend As Integer Implements ICharacter.MaximumDefend
+    Public Property MaximumDefend As Integer Implements ICharacter.MaximumDefend
         Get
             Return GetStatistic(StatisticType.MaximumDefend)
         End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.MaximumDefend, value)
+        End Set
+    End Property
+
+    Public Property Defend As Integer Implements ICharacter.Defend
+        Get
+            Return GetStatistic(StatisticType.Defend)
+        End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.Defend, value)
+        End Set
     End Property
 End Class
