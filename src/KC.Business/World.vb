@@ -237,4 +237,8 @@
             msg.AddLine(line.Item1, line.Item2)
         Next
     End Sub
+
+    Public Function GetDungeonLocation(column As Integer, row As Integer) As ILocation Implements IWorld.GetDungeonLocation
+        Return New Location(_data, _data.DungeonLocations(column, row))
+    End Function
 End Class

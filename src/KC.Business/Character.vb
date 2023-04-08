@@ -38,6 +38,7 @@
             CharacterData.Location = value.Id
             If CharacterData.Location.HasValue Then
                 _data.Locations(CharacterData.Location.Value).Characters.Add(Id)
+                _data.Locations(CharacterData.Location.Value).Visitors.Add(Id)
             End If
         End Set
     End Property

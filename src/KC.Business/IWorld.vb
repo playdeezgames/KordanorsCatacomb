@@ -13,4 +13,5 @@ Public Interface IWorld
     ReadOnly Property HasMessages As Boolean
     ReadOnly Property NextMessage As IMessage
     Sub AddMessage(ParamArray lines() As (Mood, String))
+    Function GetDungeonLocation(column As Integer, row As Integer) As ILocation
 End Interface

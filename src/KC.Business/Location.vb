@@ -112,4 +112,8 @@
         data.Locations.Add(New LocationData)
         Return New Location(data, locationId)
     End Function
+
+    Public Function IsVisitedBy(character As ICharacter) As Boolean Implements ILocation.IsVisitedBy
+        Return LocationData.Visitors.Contains(character.Id)
+    End Function
 End Class
