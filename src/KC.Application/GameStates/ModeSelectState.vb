@@ -224,7 +224,7 @@
             Case " "c
                 Return Hue.DarkGray
             Case Else
-                Return Hue.Black
+                Return Hue.Brown
         End Select
     End Function
 
@@ -320,7 +320,7 @@
                         displayBuffer.Fill((FrameWidth \ 2 - 32 + column * 8 + 3, 4 + row * 8 + 3), (2, 2), Hue.Magenta)
                     End If
                 Else
-                    displayBuffer.Fill((FrameWidth \ 2 - 32 + column * 8, 4 + row * 8), (8, 8), Hue.Black)
+                    displayBuffer.Fill((FrameWidth \ 2 - 32 + column * 8, 4 + row * 8), (8, 8), Hue.Brown)
                 End If
             Next
         Next
