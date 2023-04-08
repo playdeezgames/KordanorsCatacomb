@@ -187,7 +187,7 @@
                     "      X.",
                     "XX    X.",
                     ".XX  XX.",
-                    "..X..X.."
+                    "..X  X.."
                 }, AddressOf ColorizeMap)},
             {
                 14,
