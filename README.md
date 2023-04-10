@@ -35,5 +35,16 @@ For the Dungeon Crawler Jam 2023
 
 ## 20230410
 
-* TODO: Fantasy Quest https://itch.io/jam/dcjam2023/rate/2007912
-* TODO: The Blood Mage https://itch.io/jam/dcjam2023/rate/2006838
+* Fantasy Quest
+* The Blood Mage
+* MisRevenge
+* Myxo Outbreak
+* The Void: Shadows Unleashed
+* Ally Abducted
+* Vita et Mors
+* PIXEL DUNGEON Inventory Odyssey
+* Rekindled
+* It calls from the deep
+* D'MEO
+* The Art Gallery
+* Gradien
