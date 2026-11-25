@@ -1,6 +1,8 @@
 # KordanorsCatacomb
 For the Dungeon Crawler Jam 2023
 
+**Play in the browser:** https://playdeezgames.github.io/KordanorsCatacomb/ (Odin and WebAssembly port, November 2026; see `CLAUDE.md` and `QUIRKS.md`). The VB.NET original is in `src/`.
+
 # Screen Size
 
 * 640x480 (x4)
